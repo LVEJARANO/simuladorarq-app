@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('../MiSoftwareElectron/img/fondo.jpg'); /* Ruta de la imagen */
+            background-size: cover; /* Ajustar la imagen para cubrir toda la pantalla */
+            background-position: center;
+            background-attachment: fixed; /* Para mantener la imagen fija al hacer scroll */
+            background-repeat: no-repeat; /* Evitar que la imagen se repita */
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            width: 600px;
+        }
+        h1 {
+            font-size: 60px; /* Incremento del tamaño de la fuente */
+            font-weight: bold; /* Fuente en negrita */
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .ingresar {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007bff; /* Fondo azul */
+            color: white; /* Texto blanco */
+        }
+        .manual {
+            margin-top: 30px;
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenidos</h1>
+        <button class="ingresar" onclick="openSecondWindow()">Ingresar</button>
+        <button class="manual">Manual de Usuario</button>
+    </div>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+        
+        function openSecondWindow() {
+            ipcRenderer.send('open-second-window'); // Enviar el evento al proceso principal
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh; /* Mantener el alto de la ventana */
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+        .sidebar {
+            width: 220px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box; /* Asegurarse de que el padding no afecte el ancho */
+        }
+        .menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu-item {
+            margin-bottom: 15px;
+        }
+        .menu-item button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: transparent;
+            border: none;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .menu-item button i {
+            margin-right: 10px;
+        }
+        .menu-item button:hover {
+            background-color: #444;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #ffffff; /* Asegurarse de que el fondo sea blanco */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow-y: auto; /* Permitir desplazamiento si el contenido es largo */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 14px;
+            margin: 0 auto; /* Centrar el cuadro */
+            width: 80%; /* Ajustar el ancho del cuadro */
+        }
+        .area-label {
+            margin-top: 20px; /* Margen superior para separar del cuadro */
+            font-size: 18px; /* Tamaño de fuente del título */
+            font-weight: bold; /* Negrita */
+        }
+        .spinner {
+            margin-top: 10px; /* Margen superior para separar del título */
+        }
+        input[type="number"] {
+            width: 150px; /* Ancho del campo de número ajustado */
+            padding: 10px; /* Espaciado dentro del campo */
+            font-size: 24px; /* Tamaño de fuente más grande */
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .checkbox-group {
+            margin-top: 20px;
+            text-align: center; /* Centrar el título */
+        }
+        .checkbox-group label {
+            display: inline-block; /* Hacer los labels inline */
+            margin-right: 15px; /* Espacio entre las opciones */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul class="menu">
+            <li class="menu-item">
+                <button>
+                    <i class="fas fa-chair"></i> Cantidad Mobiliario
+                </button>
+            </li>
+            <!-- Agregar más opciones al menú si es necesario -->
+        </ul>
+    </div>
+    <div class="content">
+        <h1>CANTIDAD DE TIPOS DE MOBILIARIO</h1>
+        <!-- Cuadro con la información -->
+        <div class="info-box">
+            <p>Este indicador evalúa la cantidad y variedad del mobiliario urbano de los espacios públicos efectivos con respecto al área específica, donde la valoración cualitativa se clasifica en la cantidad y tipos de mobiliarios presentes.</p>
+            <p>Por otro lado, la valoración cuantitativa determina si cumple con los requisitos establecidos para considerarse óptimo, regular o crítico.</p>
+        </div>
+        
+        <!-- Título y campo para Área EPE -->
+        <div class="area-label">Área EPE (M2)</div>
+        <div class="spinner">
+            <input type="number" id="daySpinner" value="1" onchange="adjustDay(this.value)">
+        </div>
+
+        <div class="checkbox-group">
+            <h2>Seleccione Área</h2>
+            <label><input type="radio" name="area" value="area_inferior_1000"> AREA INFERIOR A 1000M2</label>
+            <label><input type="radio" name="area" value="area_entre_1001_4000"> AREA ENTRE 1001-4000M2</label>
+            <label><input type="radio" name="area" value="area_entre_4001_10000"> AREA ENTRE 4001-10.000M2</label>
+        </div>
+
+        <table>
+            <tr>
+                <th colspan="3">ÓPTIMO (3)</th>
+            </tr>
+            <tr>
+                <td>Presencia de 3 o más tipos de mobiliario; mobiliarios entre bancas, basureros, luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida, ejercitadores o mesas de juegos.</td>
+                <td>Presencia de 4 o más tipos de mobiliario; mobiliarios entre bancas, basureros, luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida, ejercitadores o mesas de juegos.</td>
+                <td>Presencia de 5 o más tipos de mobiliario; mobiliarios entre bancas, basureros, luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida, ejercitadores o mesas de juegos.</td>
+
+            </tr>
+            <tr>
+                <th colspan="3">REGULAR (2)</th>
+            </tr>
+            <tr>
+                <td>Presencia de solo 2 tipos de mobiliario; mobiliarios entre bancas, basureros, luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida, ejercitadores o mesas de juegos.</td>
+                <td>Presencia de solo 3 tipos de mobiliario; mobiliarios entre bancas, basureros, luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida, ejercitadores o mesas de juegos.</td>
+                <td>Presencia de solo 4 tipos de mobiliario; mobiliarios entre bancas, basureros, luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida, ejercitadores o mesas de juegos.</td>
+                
+            </tr>
+            <tr>
+                <th colspan="3">CRÍTICO (1)</th>
+            
+            </tr>
+            <tr>
+                <td>Presencia de solo 1 tipo de mobiliario; mobiliarios entre bancas, basureros, luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida, ejercitadores o mesas de juegos.</td>
+                <td>Presencia de solo 2 tipos de mobiliario; mobiliarios entre bancas, basureros, luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida, ejercitadores o mesas de juegos.</td>
+                <td>Presencia de solo 3 tipos de mobiliario; mobiliarios entre bancas, basureros, luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida, ejercitadores o mesas de juegos.</td>
+            
+            </tr>
+
+            
+            
+
+        </table>
+
+    
+    </div>
+
+    <script>
+        function adjustDay(value) {
+            let spinner = document.getElementById('daySpinner');
+            spinner.value = value; // Ajustar al valor ingresado sin restricciones
+        }
+    </script>
+</body>
+</html>
