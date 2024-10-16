@@ -4,12 +4,12 @@ const path = require('path');
 let mainWindow;
 let secondWindow;
 
-function createWindow() {
+function createMainWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
+            preload: path.join(__dirname, 'render.js'), // Aquí puedes cambiar a 'renderer.js' si es necesario
             nodeIntegration: true,
             contextIsolation: false,
         },
@@ -23,25 +23,26 @@ function createSecondWindow() {
         width: 1000,
         height: 800,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
+            preload: path.join(__dirname, 'preload.js'), // Puedes cambiar esto si es necesario
+            nodeIntegration: true,
         },
     });
 
-    secondWindow.loadFile('second.html'); // Cargar la segunda ventana
+    secondWindow.loadFile('cantidad.html'); // Cargar la segunda ventana
 }
 
 app.whenReady().then(() => {
-    createWindow();
+    createMainWindow();
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow();
+            createMainWindow();
         }
     });
 
     ipcMain.on('open-second-window', () => {
         createSecondWindow();
-        mainWindow.close(); 
+        mainWindow.close(); // Cerrar la ventana principal si es necesario
     });
 });
 
