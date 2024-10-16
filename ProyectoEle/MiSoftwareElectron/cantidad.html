@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+
+        .sidebar {
+            width: 220px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item {
+            margin-bottom: 15px;
+        }
+
+        .menu-item button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: transparent;
+            border: none;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .menu-item button i {
+            margin-right: 10px;
+        }
+
+        .menu-item button:hover {
+            background-color: #444;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 14px;
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        .area-label {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .spinner {
+            margin-top: 10px;
+        }
+
+        input[type="number"] {
+            width: 150px;
+            padding: 10px;
+            font-size: 24px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .checkbox-group {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .header {
+            background-color: #d9d9d9;
+        }
+
+        .optimo {
+            background-color: #00FF00;
+        }
+
+        .regular {
+            background-color: #FFFF00;
+        }
+
+        .critico {
+            background-color: #FF0000;
+        }
+
+        #valoracion-cuantitativa {
+            font-weight: bold;
+            font-size: 16px;
+            height: 60px;
+            /* Altura fija para la celda */
+            position: relative;
+            /* Para permitir la posición de los cuadros */
+        }
+
+        .input-area {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .table-total td {
+            font-weight: bold;
+        }
+
+        .false-value {
+            color: gray;
+        }
+
+        .area-option {
+            margin-bottom: 10px;
+        }
+
+        /* Nuevo CSS para organizar las tablas */
+        .tables-container {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .table-valoracion,
+        .table-mobiliario {
+            flex: 1;
+            /* Ambas tablas ocuparán el mismo espacio */
+            margin: 0;
+            /* Sin margen entre tablas */
+        }
+
+        .table-mobiliario tbody {
+            height: 100%;
+        }
+
+
+        .valoracion-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            height: 100%;
+        }
+
+        .valoracion-cuadrado {
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 0;
+            font-weight: bold;
+            text-align: center;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <ul class="menu">
+            <li class="menu-item">
+                <button>
+                    <i class="fas fa-chair"></i> Cantidad Mobiliario
+                </button>
+            </li>
+            <!-- Agregar más opciones al menú si es necesario -->
+        </ul>
+    </div>
+    <div class="content">
+        <h1>CANTIDAD DE TIPOS DE MOBILIARIO</h1>
+        <!-- Cuadro con la información -->
+        <div class="info-box">
+            <p>Este indicador evalúa la cantidad y variedad del mobiliario urbano de los espacios públicos efectivos con
+                respecto al área específica, donde la valoración cualitativa se clasifica en la cantidad y tipos de
+                mobiliarios presentes.</p>
+            <p>Por otro lado, la valoración cuantitativa determina si cumple con los requisitos establecidos para
+                considerarse óptimo, regular o crítico.</p>
+        </div>
+
+        <!-- Título y campo para Área EPE -->
+        <div class="area-label">Área EPE (M2)</div>
+        <div class="spinner">
+            <input type="number" id="daySpinner" value="0" onchange="adjustDay(this.value)">
+        </div>
+
+        <!-- Campo de selección de área (m2) -->
+        <div>
+            <label>Selecciona el área:</label>
+            <div class="area-option">
+                <label><input type="radio" name="area-epe" value="1000"> Área Inferior a 1000m²</label>
+                <label><input type="radio" name="area-epe" value="4000"> Área entre 1001-4000m²</label>
+                <label><input type="radio" name="area-epe" value="10000"> Área entre 4001-10,000m²</label>
+            </div>
+        </div>
+
+        <!-- Contenedor para ambas tablas -->
+        <div class="tables-container">
+
+            <div class="table_numero">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>N° DE CUADRANTE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <style>
+                /*Tabla */
+                .table_numero {
+                    display: flex;
+                }
+            </style>
+
+
+            <!-- Tabla Valoración Cualitativa -->
+            <div class="table-valoracion">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="3">VALORACIÓN CUALITATIVA</th>
+                        </tr>
+                        <tr>
+                            <th colspan="3">ÓPTIMO (3)</th>
+                        </tr>
+                        <tr>
+                            <td>Presencia de 3 o más tipos de mobiliario; mobiliarios entre bancas, basureros,
+                                luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida,
+                                ejercitadores o mesas de juegos.</td>
+                            <td>Presencia de 4 o más tipos de mobiliario; mobiliarios entre bancas, basureros,
+                                luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida,
+                                ejercitadores o mesas de juegos.</td>
+                            <td>Presencia de 5 o más tipos de mobiliario; mobiliarios entre bancas, basureros,
+                                luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida,
+                                ejercitadores o mesas de juegos.</td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">REGULAR (2)</th>
+                        </tr>
+                        <tr>
+                            <td>Presencia de solo 2 tipos de mobiliario; mobiliarios entre bancas, basureros,
+                                luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida,
+                                ejercitadores o mesas de juegos.</td>
+                            <td>Presencia de solo 3 tipos de mobiliario; mobiliarios entre bancas, basureros,
+                                luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida,
+                                ejercitadores o mesas de juegos.</td>
+                            <td>Presencia de solo 4 tipos de mobiliario; mobiliarios entre bancas, basureros,
+                                luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida,
+                                ejercitadores o mesas de juegos.</td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">CRÍTICO (1)</th>
+                        </tr>
+                        <tr>
+                            <td>Presencia de solo 1 tipo de mobiliario; mobiliarios entre bancas, basureros, luminarias,
+                                mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida, ejercitadores o
+                                mesas de juegos.</td>
+                            <td>Presencia de solo 2 tipos de mobiliario; mobiliarios entre bancas, basureros,
+                                luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida,
+                                ejercitadores o mesas de juegos.</td>
+                            <td>Presencia de solo 3 tipos de mobiliario; mobiliarios entre bancas, basureros,
+                                luminarias, mesas, bebederos, juegos infantiles, bicicleteros, casetas de comida,
+                                ejercitadores o mesas de juegos.</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <!-- Tabla Tipos de Mobiliario -->
+            <div class="table-mobiliario">
+                <table style="height: 96.4%;">
+                    <thead>
+                        <tr>
+                            <th>TIPOS DE MOBILIARIO</th>
+                            <th>"X"</th>
+                            <th>TIPO DE EPE (M²)</th>
+                            <th style="padding: 10px 0px 0px 0px;">VALORACIÓN CUANTITATIVA
+
+                                <div class="btn_control_cuanti">
+                                    <div class="btn_optimo">Óptimo</div>
+                                    <div class="btn_regular">Regular</div>
+                                    <div class="btn_critico">Crítico</div>
+                                </div>
+
+                                <style>
+                                    .btn_control_cuanti {
+                                        display: flex;
+                                        width: 100%;
+                                        padding: 0px;
+                                    }
+
+                                    .btn_control_cuanti div {
+                                        border: 1px solid black;
+                                        flex: 1;
+                                        padding: 2.2px;
+                                    }
+
+                                    .btn_control_cuanti .btn_optimo {
+                                        background: #097209;
+                                        color: white;
+                                    }
+
+                                    .btn_control_cuanti .btn_regular {
+                                        background: #f0db67;
+                                        color: black;
+                                    }
+
+                                    .btn_control_cuanti .btn_critico {
+                                        background: #da0606;
+                                        color: white;
+                                    }
+
+                                    th {
+                                        border: 1px solid black;
+                                        padding: 10px;
+                                        text-align: center;
+                                        font-size: 11px;
+                                    }
+                                    
+                                </style>
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Banca</td>
+                            <td><input type="checkbox" class="mobiliario"></td>
+                            <td rowspan="10" id="tipo-epe">-</td>
+                            <td rowspan="10" id="valoracion-cuantitativa" class="false-value">
+                                <div class="valoracion-container">
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Señalización</td>
+                            <td><input type="checkbox" class="mobiliario"></td>
+                        </tr>
+                        <tr>
+                            <td>Luminaria</td>
+                            <td><input type="checkbox" class="mobiliario"></td>
+                        </tr>
+                        <tr>
+                            <td>Basureros</td>
+                            <td><input type="checkbox" class="mobiliario"></td>
+                        </tr>
+                        <tr>
+                            <td>Mesas</td>
+                            <td><input type="checkbox" class="mobiliario"></td>
+                        </tr>
+                        <tr>
+                            <td>Juegos Infantiles</td>
+                            <td><input type="checkbox" class="mobiliario"></td>
+                        </tr>
+                        <tr>
+                            <td>Bebederos</td>
+                            <td><input type="checkbox" class="mobiliario"></td>
+                        </tr>
+                        <tr>
+                            <td>Portabicicletas</td>
+                            <td><input type="checkbox" class="mobiliario"></td>
+                        </tr>
+                        <tr>
+                            <td>Biosaludables</td>
+                            <td><input type="checkbox" class="mobiliario"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Otro: <input type="text" id="otro-mobiliario" placeholder="Especificar otro" disabled>
+                            </td>
+                            <td><input type="checkbox" id="checkbox-otro"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tabla de totales -->
+        <table class="table-total">
+            <tr>
+                <td>Total</td>
+                <td id="total-mobiliarios">0</td>
+            </tr>
+            <tr>
+                <td>Calificación Indicador</td>
+                <td id="calificacion-indicador">0</td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="render.js"></script>
+
+    <script>
+        function adjustDay(value) {
+            let spinner = document.getElementById('daySpinner');
+            spinner.value = value; // Ajustar al valor ingresado sin restricciones
+        }
+    </script
+</body>
+
+</html>
