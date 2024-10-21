@@ -82,7 +82,7 @@
             margin-top: 20px; /* Espacio entre el título y el cuadro */
         }
 
-        /* Estilos para la tabla */
+        /* Estilos para la tabla1 */
         table {
             width: 80%;
             max-width: 600px;
@@ -101,10 +101,103 @@
             background-color: #007BFF; /* Color de fondo de los encabezados */
             color: white; /* Color de texto de los encabezados */
         }
+
+        /* Estilos para la tabla2 */
+
+        .small-table { 
+            width: 50%; /* Ajusta la anchura de la tabla */
+            max-width: 600px; /* Máxima anchura para evitar que crezca mucho */
+            border-collapse: collapse;
+            border: 1px solid black; /* Se asegura que la tabla tenga bordes */
+            margin: 20px auto; /* Centra la tabla */
+        }
+           th, td {
+               border: 1px solid black; /* Añade bordes visibles en cada celda */
+               text-align: center;
+               padding: 10px;
+           }
+           .header {
+               background-color: #006699;
+               color: white;
+           }
+           .range-row {
+               background-color: #FFCCCC; /* Color rojo para rango crítico */
+           }
+           .total {
+               background-color: #006699;
+               color: white;
+           }
+   
+           .subcol-container {
+               display: flex;
+               justify-content: space-between;
+               width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+           }
+           .subcol {
+               flex: 1; /* Permite que cada subcolumna tome un espacio igual */
+               border-left: 1px solid black; /* Borde entre las subcolumnas */
+               border-right: 1px solid black; /* Borde entre las subcolumnas */
+               padding: 0; /* Sin padding para que ocupe mejor el espacio */
+           }
+   
+           .calificacion-header-optimo {
+               background-color: #99FF99; /* Color verde para óptimo */
+           }
+           .calificacion-header-regular {
+               background-color: #FFFF99; /* Color amarillo para regular */
+           }
+           .calificacion-header-critico {
+               background-color: #FF9999; /* Color rojo para crítico */
+           }
+           .calificacion {
+               height: 100px;
+           }
+           .calificacion-container {
+               display: flex;
+               flex-direction: column;
+               justify-content: stretch;
+               height: 100%;
+           }
+           .cantidad-tipos-mobiliario {
+               width: 300px; /* Aumenta el ancho de esta columna */
+           }
+   
+           .subcol-container {
+               display: flex;
+               align-items: center;
+               justify-content: flex-start; /* Cambiado para alinear a la izquierda */
+           }
+           .subcol {
+               border: 1px solid black; /* Borde sólido negro */
+               padding: 5px;
+               margin: 2px;
+               text-align: center;
+               width: 30px;
+           }
+   
+           .rango {
+               background-color: #f0f0f0;
+               border: 1px solid black; /* Borde sólido negro */
+               padding: 5px;
+               margin: 2px;
+               width: 100%; /* Ocupa todo el espacio */
+               text-align: center;
+           }
+   
+           /* Estilo para la última fila azul */
+           .blue-row {
+               background-color: #0000FF;
+               color: white;
+           }
+           .blue-cell {
+    background-color: rgb(242, 240, 240); /* Color azul */
+    color: rgb(20, 19, 19); /* Color de texto blanco */
+}
+     
     </style>
 </head>
 
-<body>
+
     <div class="sidebar" id="sidebar">
         <!-- La barra lateral se cargará aquí mediante render.js -->
     </div>
@@ -150,6 +243,133 @@
                 </tr>
             </tbody>
         </table>
+    </head>
+    <body>
+        <table class="small-table">
+            <thead>
+                <tr>
+                    <th rowspan="2">N° DE CUADRANTE</th>
+                    <th colspan="3">VALORACIÓN CUALITATIVA</th>
+                    <th rowspan="2">TIPOS DE MOBILIARIO</th>
+                    <th colspan="2" class="header">VALORACIÓN CUANTITATIVA</th>
+                    <th colspan="3" class="header">CALIFICACIÓN INDICADOR</th>
+                </tr>
+                <tr>
+                    <th class="calificacion-header-optimo">ÓPTIMO (3)</th>
+                    <th class="calificacion-header-regular">REGULAR (2)</th>
+                    <th class="calificacion-header-critico">CRÍTICO (1)</th>
+                    <th>EVALUACIÓN (3, 2, 1)</th>
+                    <th>CANTIDAD DE TIPOS DE MOBILIARIO EVALUADOS</th>
+                    <th class="calificacion-header-optimo">ÓPTIMO (3)</th>
+                    <th class="calificacion-header-regular">REGULAR (2)</th>
+                    <th class="calificacion-header-critico">CRÍTICO (1)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="20">1</td>
+                    <td rowspan="20">Mobiliario totalmente funcional, sin afectaciones estructurales.</td>
+                    <td rowspan="20">Mobiliario con leves afectaciones que no impiden su uso.</td>
+                    <td rowspan="20">Mobiliario con graves afectaciones que impiden su funcionamiento.</td>
+                    <td>BANCAS</td>
+                    <td></td>
+                    <td rowspan="2" class="cantidad-tipos-mobiliario">0</td>
+                </tr>
+                <tr>
+                    <td>SEÑALIZACIÓN</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>LUMINARIAS</td>
+                    <td></td>
+                    <td class="subcol-container cantidad-tipos-mobiliario">
+                        <div class="subcol">0</div>
+                        <div class="subcol">0</div>
+                        <div class="subcol">0</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BASUREROS</td>
+                    <td></td>
+                    <td class="subcol-container cantidad-tipos-mobiliario">
+                        <div class="subcol">0</div>
+                        <div class="subcol">0</div>
+                        <div class="subcol">0</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>MESAS</td>
+                    <td></td>
+                    <td rowspan="2" class="cantidad-tipos-mobiliario">0</td>
+                </tr>
+                <tr>
+                    <td>JUEGOS INFANTILES</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>BEBEDEROS</td>
+                    <td></td>
+                    <td rowspan="3" class="cantidad-tipos-mobiliario">0</td>
+                </tr>
+                <tr>
+                    <td>BICIPARQUEADERO</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>BIOSALUDABLE</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>OTROS</td>
+                    <td></td>
+                    <td rowspan="1" class="rango-container">Rangos</td>
+                </tr>
+                <tr>
+                    <td>OTROS</td>
+                    <td></td>
+                    <td class="cantidad-tipos-mobiliario">
+                        <div class="subcol-container">
+                            <div class="subcol">0</div>
+                            <div class="subcol">0</div>
+                            <div class="subcol">0</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>OTROS</td>
+                    <td></td>
+                    <td class="cantidad-tipos-mobiliario">
+                        <div class="subcol-container">
+                            <div class="subcol">0</div>
+                            <div class="subcol">0</div>
+                            <div class="subcol">0</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>OTROS</td>
+                    <td></td>
+                    <td class="cantidad-tipos-mobiliario">
+                        <div class="subcol-container">
+                            <div class="subcol">0</div>
+                            <div class="subcol">0</div>
+                            <div class="subcol">0</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="blue-row">
+                 <td class="blue-row"></td> <!-- Nueva celda azul a la izquierda -->
+                 <td colspan="1" class="total blue-cell">0</td> 
+                 <td colspan="8" class="blue-row"></td> <!-- Celda que abarca desde la segunda hasta la última -->
+             </tr>
+             
+             
+ 
+             
+                
+                
+            </tbody>
+        </table>
     </div>
 
     <script src="render.js"></script>
@@ -157,6 +377,11 @@
     <script>
         // Aquí puedes agregar scripts específicos para esta página si lo deseas
     </script>
-</body>
+   
+   
+   
+   
 
+
+</body>
 </html>
