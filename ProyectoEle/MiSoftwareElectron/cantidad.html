@@ -10,13 +10,13 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            height: 100vh;
+            block-size: 100vh;
             margin: 0;
             background-color: #f2f2f2;
         }
 
         .sidebar {
-            width: 220px;
+            inline-size: 220px;
             background-color: #333;
             color: white;
             padding: 20px;
@@ -30,13 +30,13 @@
         }
 
         .menu-item {
-            margin-bottom: 15px;
+            margin-block-end: 15px;
         }
 
         .menu-button {
             display: flex;
             align-items: center;
-            width: 100%;
+            inline-size: 100%;
             padding: 10px;
             font-size: 16px;
             color: white;
@@ -48,7 +48,7 @@
         }
 
         .menu-button i {
-            margin-right: 10px;
+            margin-inline-end: 10px;
         }
 
         .menu-button:hover {
@@ -68,7 +68,7 @@
 
         h1 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-block-end: 20px;
         }
 
         .info-box {
@@ -78,21 +78,21 @@
             border-radius: 10px;
             font-size: 14px;
             margin: 0 auto;
-            width: 80%;
+            inline-size: 80%;
         }
 
         .area-label {
-            margin-top: 20px;
+            margin-block-start: 20px;
             font-size: 18px;
             font-weight: bold;
         }
 
         .spinner {
-            margin-top: 10px;
+            margin-block-start: 10px;
         }
 
         input[type="number"] {
-            width: 150px;
+            inline-size: 150px;
             padding: 10px;
             font-size: 24px;
             text-align: center;
@@ -101,14 +101,14 @@
         }
 
         .checkbox-group {
-            margin-top: 20px;
+            margin-block-start: 20px;
             text-align: center;
         }
 
         table {
-            width: 100%;
+            inline-size: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-block-start: 20px;
 
         }
 
@@ -118,7 +118,7 @@
             padding: 10px;
             text-align: center;
             font-size: 12px;
-            height: 50px;
+            block-size: 50px;
             /* Define una altura uniforme para todas las celdas */
             vertical-align: middle;
             /* Centra el texto verticalmente */
@@ -183,14 +183,14 @@
         #valoracion-cuantitativa {
             font-weight: bold;
             font-size: 16px;
-            height: 60px;
+            block-size: 60px;
             /* Altura fija para la celda */
             position: relative;
             /* Para permitir la posición de los cuadros */
         }
 
         .input-area {
-            width: 100%;
+            inline-size: 100%;
             padding: 5px;
         }
 
@@ -204,13 +204,13 @@
         }
 
         .area-option {
-            margin-bottom: 10px;
+            margin-block-end: 10px;
         }
 
         /* Nuevo CSS para organizar las tablas */
         .tables-container {
             display: flex;
-            margin-top: 20px;
+            margin-block-start: 20px;
         }
 
         .table-valoracion,
@@ -222,7 +222,7 @@
         }
 
         .table-mobiliario tbody {
-            height: 100%;
+            block-size: 100%;
         }
 
 
@@ -230,16 +230,16 @@
             display: flex;
             justify-content: flex-start;
             align-items: flex-start;
-            height: 100%;
+            block-size: 100%;
         }
 
         .valoracion-cuadrado {
-            width: 80px;
-            height: 30px;
+            inline-size: 80px;
+            block-size: 30px;
             line-height: 30px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin-right: 0;
+            margin-inline-end: 0;
             font-weight: bold;
             text-align: center;
         }
@@ -266,7 +266,7 @@
         .area-label {
             font-size: 1.5em;
             /* Tamaño de fuente más grande */
-            margin-bottom: 15px;
+            margin-block-end: 15px;
             /* Espaciado debajo de la etiqueta */
             color: #333;
             /* Color de texto */
@@ -288,7 +288,7 @@
             /* Centra verticalmente los elementos */
             flex-direction: column;
             /* Coloca el icono y el texto en columna */
-            width: 150px;
+            inline-size: 150px;
             /* Ancho fijo para las tarjetas */
             padding: 15px;
             margin: 10px;
@@ -320,7 +320,7 @@
         .card-icon {
             font-size: 2em;
             /* Tamaño del icono */
-            margin-right: 10px;
+            margin-inline-end: 10px;
             /* Espaciado a la derecha del icono */
         }
 
@@ -361,6 +361,24 @@
         <div class="spinner">
             <input type="number" id="daySpinner" value="0" onchange="adjustDay(this.value)">
         </div>
+        <p>Área seleccionada: <span id="areaEPEDisplay">0</span> m²</p>
+        
+        <script>
+            // Cargar el valor guardado en localStorage cuando se abre la página
+            window.onload = function() {
+                const savedValue = localStorage.getItem('areaEPE');
+                if (savedValue !== null) {
+                    document.getElementById('daySpinner').value = savedValue;
+                    document.getElementById('areaEPEDisplay').innerText = savedValue;
+                }
+            }
+        
+            function adjustDay(value) {
+                // Guardar el valor en localStorage y actualizar el texto en pantalla
+                localStorage.setItem('areaEPE', value);
+                document.getElementById('areaEPEDisplay').innerText = value;
+            }
+        </script>
 
         <!-- Campo de selección de área (m2) -->
         <div class="area-selection">
@@ -537,6 +555,46 @@
             let spinner = document.getElementById('daySpinner');
             spinner.value = value; // Ajustar al valor ingresado sin restricciones
         }
+
+    // Cargar los valores almacenados en localStorage cuando se abre la página
+    window.onload = function () {
+        loadValues();
+    }
+
+    function adjustDay(value) {
+        localStorage.setItem('areaEPE', value);
+        document.getElementById('areaEPEDisplay').innerText = value;
+    }
+
+    function loadValues() {
+        // Cargar el valor del spinner
+        const savedAreaEPE = localStorage.getItem('areaEPE');
+        if (savedAreaEPE !== null) {
+            document.getElementById('daySpinner').value = savedAreaEPE;
+            document.getElementById('areaEPEDisplay').innerText = savedAreaEPE;
+        }
+
+        // Cargar valores de los checkboxes de mobiliario
+        const mobiliarioBanca = localStorage.getItem('mobiliario-banca');
+        if (mobiliarioBanca === 'true') {
+            document.getElementById('mobiliario-banca').checked = true;
+        }
+    }
+
+    function resetValues() {
+        // Limpiar localStorage y resetear campos
+        localStorage.clear();
+        document.getElementById('daySpinner').value = 0;
+        document.getElementById('areaEPEDisplay').innerText = 0;
+        document.getElementById('mobiliario-banca').checked = false;
+    }
+
+    // Guardar el estado de los checkboxes en localStorage
+    document.querySelectorAll('.mobiliario').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            localStorage.setItem(checkbox.id, checkbox.checked);
+        });
+    });
     </script
     
 </body>
