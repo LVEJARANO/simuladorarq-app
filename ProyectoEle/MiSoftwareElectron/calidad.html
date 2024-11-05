@@ -238,6 +238,7 @@
         }
 
         .subcol-container {
+            width: 300px;
             display: flex;
             align-items: center;
             justify-content: flex-start;
@@ -317,6 +318,13 @@
             /* Color azul */
             color: rgb(20, 19, 19);
             /* Color de texto blanco */
+        }
+
+        .evaluacion {
+            width: 100px;
+            /* Ajusta el tamaño según tus necesidades */
+            text-align: center;
+            /* Centra el texto dentro del input */
         }
     </style>
 </head>
@@ -412,18 +420,19 @@
                     <td rowspan="20">Mobiliario con graves afectaciones que impiden su funcionamiento, presentan daños
                         estructurales de una o varias de sus partes. <b>GRADO DE AFECTACION DE MÁS DEL 61%</b></td>
                     <td>BANCAS</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                     <td rowspan="2" class="cantidad-mobiliario-evaluados"><span id="total-mobiliario2">0</span></td>
                     <td rowspan="20" colspan="3" id="c-indicador" class="false-value">-</td>
 
                 </tr>
                 <tr>
                     <td>SEÑALIZACIÓN</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                 </tr>
                 <tr>
                     <td>LUMINARIAS</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                     <td class="subcol-container cantidad-tipos-mobiliario">
                         <div class="subcol">3</div>
                         <div class="subcol">2</div>
@@ -432,7 +441,7 @@
                 </tr>
                 <tr>
                     <td>BASUREROS</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                     <td class="subcol-container cantidad-tipos-mobiliario">
                         <div class="subcol"><span id="multiplicacion-3">0</span></div>
                         <div class="subcol"><span id="multiplicacion-2">0</span></div>
@@ -441,34 +450,34 @@
                 </tr>
                 <tr>
                     <td>MESAS</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                     <td rowspan="2" class="cantidad-tipos-mobiliario"><span id="resultado-resta">0</span></td>
                 </tr>
                 <tr>
                     <td>JUEGOS INFANTILES</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                 </tr>
                 <tr>
                     <td>BEBEDEROS</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                     <td rowspan="3" class="cantidad-tipos-mobiliario"><span id="resultado-division">0</span></td>
                 </tr>
                 <tr>
                     <td>BICIPARQUEADERO</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                 </tr>
                 <tr>
                     <td>BIOSALUDABLE</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                 </tr>
                 <tr>
                     <td>OTROS</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                     <td rowspan="1" class="rango-container">Rangos</td>
                 </tr>
                 <tr>
                     <td>OTROS</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                     <td class="cantidad-tipos-mobiliario">
                         <div class="subcol-container">
                             <div class="subcol1" class="subcol1"><span id="resultado-rango1">0</span></div>
@@ -478,7 +487,7 @@
                 </tr>
                 <tr>
                     <td>OTROS</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                     <td class="cantidad-tipos-mobiliario">
                         <div class="subcol-container">
                             <div class="subcol2"><span id="resultado-rango3">0</span></div>
@@ -488,7 +497,7 @@
                 </tr>
                 <tr>
                     <td>OTROS</td>
-                    <td><input type="number" class="evaluacion" value="0"></td>
+                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
                     <td class="cantidad-tipos-mobiliario">
                         <div class="subcol-container">
                             <div class="subcol3"><span id="resultado-rango5">0</span></div>
