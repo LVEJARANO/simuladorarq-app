@@ -10,13 +10,13 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            height: 100vh;
+            block-size: 100vh;
             margin: 0;
             background-color: #f2f2f2;
         }
 
         .sidebar {
-            width: 220px;
+            inline-size: 220px;
             background-color: #333;
             color: white;
             padding: 20px;
@@ -30,13 +30,13 @@
         }
 
         .menu-item {
-            margin-bottom: 15px;
+            margin-block-end: 15px;
         }
 
         .menu-button {
             display: flex;
             align-items: center;
-            width: 100%;
+            inline-size: 100%;
             padding: 10px;
             font-size: 16px;
             color: white;
@@ -48,7 +48,7 @@
         }
 
         .menu-button i {
-            margin-right: 10px;
+            margin-inline-end: 10px;
         }
 
         .menu-button:hover {
@@ -58,38 +58,38 @@
         .content {
             flex-grow: 1;
             padding: 20px;
+            padding-inline-start: 350px; /* Aumenta este valor según el ancho de la barra lateral */
             background-color: #ffffff;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             overflow-y: auto;
             align-items: center;
-            /* Centra horizontalmente */
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-block-end: 20px;
         }
 
         .info-box {
-            width: 80%;
-            max-width: 600px;
+            inline-size: 80%;
+            max-inline-size: 600px;
             background-color: #e0e0e0;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-top: 20px;
+            margin-block-start: 20px;
             /* Espacio entre el título y el cuadro */
         }
 
         /* Estilos para la tabla1 */
         table {
-            width: 80%;
-            max-width: 600px;
+            inline-size: 80%;
+            max-inline-size: 600px;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-block-start: 20px;
             /* Espacio entre el cuadro de información y la tabla */
         }
 
@@ -110,9 +110,9 @@
         /* Estilos para la tabla2 */
 
         .small-table {
-            width: 50%;
+            inline-size: 50%;
             /* Ajusta la anchura de la tabla */
-            max-width: 600px;
+            max-inline-size: 600px;
             /* Máxima anchura para evitar que crezca mucho */
             border-collapse: collapse;
             border: 1px solid black;
@@ -142,12 +142,12 @@
 
         .calificacion-indicador {
             background-color: #006699;
-            border-bottom: none;
+            border-block-end: none;
             /* Elimina el borde inferior */
         }
 
         .sin-borde-superior {
-            border-top: none;
+            border-block-start: none;
         }
 
         .range-row {
@@ -163,16 +163,16 @@
         .subcol-container {
             display: flex;
             justify-content: space-between;
-            width: 100%;
+            inline-size: 100%;
             /* Asegura que el contenedor ocupe todo el ancho */
         }
 
         .subcol {
             flex: 1;
             /* Permite que cada subcolumna tome un espacio igual */
-            border-left: 1px solid black;
+            border-inline-start: 1px solid black;
             /* Borde entre las subcolumnas */
-            border-right: 1px solid black;
+            border-inline-end: 1px solid black;
             /* Borde entre las subcolumnas */
             padding: 0;
             /* Sin padding para que ocupe mejor el espacio */
@@ -200,14 +200,14 @@
         }
 
         .calificacion {
-            height: 100px;
+            block-size: 100px;
         }
 
         .calificacion-container {
             display: flex;
             flex-direction: column;
             justify-content: stretch;
-            height: 100%;
+            block-size: 100%;
         }
 
         .optimo {
@@ -233,12 +233,12 @@
         }
 
         .cantidad-tipos-mobiliario {
-            width: 300px;
+            inline-size: 300px;
             /* Aumenta el ancho de esta columna */
         }
 
         .subcol-container {
-            width: 300px;
+            inline-size: 300px;
             display: flex;
             align-items: center;
             justify-content: flex-start;
@@ -251,7 +251,7 @@
             padding: 5px;
             margin: 2px;
             text-align: center;
-            width: 30px;
+            inline-size: 30px;
         }
 
         .rango {
@@ -260,7 +260,7 @@
             /* Borde sólido negro */
             padding: 5px;
             margin: 2px;
-            width: 100%;
+            inline-size: 100%;
             /* Ocupa todo el espacio */
             text-align: center;
         }
@@ -270,7 +270,7 @@
             background-color: #FF9999;
             padding: 5px;
             margin: 2px;
-            width: 145px;
+            inline-size: 145px;
 
         }
 
@@ -279,7 +279,7 @@
             background-color: #FFFF99;
             padding: 5px;
             margin: 2px;
-            width: 145px;
+            inline-size: 145px;
 
         }
 
@@ -288,12 +288,12 @@
             background-color: #99FF99;
             padding: 5px;
             margin: 2px;
-            width: 145px;
+            inline-size: 145px;
 
         }
 
         .no-left-border {
-            border-right: none !important;
+            border-inline-end: none !important;
         }
 
         .blue-row td {
@@ -302,7 +302,7 @@
         }
 
         .no-right-border {
-            border-right: none !important;
+            border-inline-end: none !important;
             /* Elimina el borde derecho */
             /* Combina con el color azul */
         }
@@ -321,7 +321,7 @@
         }
 
         .evaluacion {
-            width: 100px;
+            inline-size: 100px;
             /* Ajusta el tamaño según tus necesidades */
             text-align: center;
             /* Centra el texto dentro del input */
@@ -329,12 +329,13 @@
     </style>
 </head>
 
-
 <div class="sidebar" id="sidebar">
     <!-- La barra lateral se cargará aquí mediante render.js -->
 </div>
+
 <div class="content">
     <h1>Calidad de Mobiliario</h1>
+
     <!-- Cuadro de información debajo del título -->
     <div class="info-box">
         <p>Este indicador evalúa la cantidad y el grado de afectación que presenta el mobiliario urbano en los espacios
@@ -343,7 +344,7 @@
             considerarse óptimo, regular o crítico.</p>
     </div>
 
-    <!-- Tabla debajo del cuadro de información -->
+<body>
     <table>
         <thead>
             <tr>
@@ -355,172 +356,373 @@
         </thead>
         <tbody>
             <tr>
-                <td rowspan="3"></td> <!-- Celda vacía ocupando 3 filas -->
+                <td rowspan="3" id="areaEPE">0</td>
                 <td>5x5</td>
-                <td></td> <!-- N° -->
+                <td id="division1">1</td>
                 <td>
-                    <label><input type="radio" name="area-epe" value="1000"></label>
+                    <label><input type="radio" name="area-epe" value="1" onclick="updateTables();"></label>
                 </td>
             </tr>
             <tr>
                 <td>10x10</td>
-                <td></td> <!-- N° -->
+                <td id="division2">2</td>
                 <td>
-                    <label><input type="radio" name="area-epe" value="1000"></label>
+                    <label><input type="radio" name="area-epe" value="2" onclick="updateTables();"></label>
                 </td>
             </tr>
             <tr>
                 <td>20x20</td>
-                <td></td> <!-- N° -->
+                <td id="division3">4</td>
                 <td>
-                    <label><input type="radio" name="area-epe" value="1000"></label>
+                    <label><input type="radio" name="area-epe" value="3" onclick="updateTables();"></label>
                 </td>
             </tr>
         </tbody>
     </table>
-    </head>
+    <br>
+    <div id="additional-table-container">
+        <label for="additional-table-count">Número de tablas adicionales:</label>
+        <input type="number" id="additional-table-count" min="1" value="1">
+        <button id="add-more-tables-button">Agregar Más Tablas</button>
+    </div>
 
-    <body>
-        <table class="small-table">
-            <thead>
-                <tr>
-                    <th rowspan="3">N° DE CUADRANTE</th>
-                    <th colspan="3">VALORACIÓN CUALITATIVA</th>
-                    <th rowspan="3">TIPOS DE MOBILIARIO</th>
-                    <th colspan="2" class="header no-border" style="text-align: center;">VALORACIÓN CUANTITATIVA</th>
-                    <th colspan="3" class="header calificacion-indicador">CALIFICACIÓN INDICADOR</th>
-                </tr>
-                <tr>
-                    <th class="calificacion-header-optimo">ÓPTIMO (3)</th>
-                    <th class="calificacion-header-regular">REGULAR (2)</th>
-                    <th class="calificacion-header-critico">CRÍTICO (1)</th>
-                    <th colspan="2" class="header no-border"></th>
-                    <th colspan="3" class=" header calificacion-indicador sin-borde-superior"></th>
-                </tr>
-                <tr>
-                    <th> FALENCIAS DE >20% </th>
-                    <th> FALENCIAS DEL 21-60% </th>
-                    <th> FALENCIAS DE &lt;61% </th>
-                    <th>EVALUACIÓN (3, 2, 1)</th>
-                    <th>CANTIDAD DE TIPOS DE MOBILIARIO EVALUADOS</th>
-                    <th class="calificacion-header-optimo">ÓPTIMO (3)</th>
-                    <th class="calificacion-header-regular">REGULAR (2)</th>
-                    <th class="calificacion-header-critico">CRÍTICO (1)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td rowspan="20">1</td>
-                    <td rowspan="20">Mobiliario totalmente funcional, sin presencia de afectaciones estructurales ni en
-                        su materialidad, solo presenta deterioro estético de sus acabados. <b>GRADO DE AFECTACIÓN
-                            INFERIOR AL 20%</b> </td>
-                    <td rowspan="20">Mobiliario con leves afectaciones que no impiden su funcionamiento, presentan
-                        deterioro en sus materiales causado por el clima. No presenta daños estructurales. <b>GRADO DE
-                            AFECTACION ENTRE EL 21% Y EL 60%</b> </td>
-                    <td rowspan="20">Mobiliario con graves afectaciones que impiden su funcionamiento, presentan daños
-                        estructurales de una o varias de sus partes. <b>GRADO DE AFECTACION DE MÁS DEL 61%</b></td>
-                    <td>BANCAS</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+    <div id="tables-container">
+        <!-- Aquí se duplicarán las tablas -->
+    </div>
+
+    
+
+    <script>
+        
+        // Cargar el valor de área EPE desde localStorage al cargar la página
+        window.onload = function () {
+            const areaEPEValue = localStorage.getItem('areaEPE');
+            if (areaEPEValue !== null) {
+                document.getElementById('areaEPE').innerText = areaEPEValue;
+            }
+            // Llama a updateDivisions para calcular las divisiones inicialmente
+            updateDivisions();
+            updateTables(); // Actualiza las tablas al cargar
+        };
+
+        function updateDivisions() {
+            // Obtener el valor del área EPE desde la celda correspondiente
+            const areaEPE = parseFloat(document.getElementById('areaEPE').innerText);
+
+            // Definir las áreas de cuadrante en m²
+            const areasCuadrante = [25, 100, 400]; // 5x5, 10x10, 20x20
+
+            // Calcular y mostrar la división en cada celda correspondiente
+            areasCuadrante.forEach((area, index) => {
+                const resultado = Math.round(areaEPE / area); // Redondea al entero más cercano
+                document.getElementById(`division${index + 1}`).innerText = resultado;
+            });
+        }
+
+        function updateTables() {
+            const selectedValue = document.querySelector('input[name="area-epe"]:checked')?.value;
+            const tablesContainer = document.getElementById('tables-container');
+            tablesContainer.innerHTML = ''; // Limpiar las tablas existentes
+
+            if (selectedValue) {
+                const numTables = parseInt(document.getElementById(`division${selectedValue}`).innerText);
+                for (let i = 0; i < numTables; i++) {
+                    const newTable = createTable(i + 1);
+                    tablesContainer.appendChild(newTable);
+                }
+            }
+        }
+
+        
+
+        function createTable(index) {
+            const table = document.createElement('table');
+            table.className = "small-table";
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th rowspan="3">N° DE CUADRANTE</th>
+                        <th colspan="3">VALORACIÓN CUALITATIVA</th>
+                        <th rowspan="3">TIPOS DE MOBILIARIO</th>
+                        <th colspan="2" class="header no-border" style="text-align: center;">VALORACIÓN CUANTITATIVA</th>
+                        <th colspan="3" class="header calificacion-indicador">CALIFICACIÓN INDICADOR</th>
+                    </tr>
+                    <tr>
+                        <th class="calificacion-header-optimo">ÓPTIMO (3)</th>
+                        <th class="calificacion-header-regular">REGULAR (2)</th>
+                        <th class="calificacion-header-critico">CRÍTICO (1)</th>
+                        <th colspan="2" class="header no-border"></th>
+                        <th colspan="3" class="header calificacion-indicador sin-borde-superior"></th>
+                    </tr>
+                    <tr>
+                        <th>FALENCIAS DE >20%</th>
+                        <th>FALENCIAS DEL 21-60%</th>
+                        <th>FALENCIAS DE &lt;61%</th>
+                        <th>EVALUACIÓN (3, 2, 1)</th>
+                        <th>CANTIDAD DE TIPOS DE MOBILIARIO EVALUADOS</th>
+                        <th class="calificacion-header-optimo">ÓPTIMO (3)</th>
+                        <th class="calificacion-header-regular">REGULAR (2)</th>
+                        <th class="calificacion-header-critico">CRÍTICO (1)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="20">${index}</td>
+                        <td rowspan="20">Mobiliario totalmente funcional, sin presencia de afectaciones estructurales ni en su materialidad, solo presenta deterioro estético de sus acabados. <b>GRADO DE AFECTACIÓN INFERIOR AL 20%</b></td>
+                        <td rowspan="20">Mobiliario con leves afectaciones que no impiden su funcionamiento, presentan deterioro en sus materiales causado por el clima. No presenta daños estructurales. <b>GRADO DE AFECTACION ENTRE EL 21% Y EL 60%</b></td>
+                        <td rowspan="20">Mobiliario con graves afectaciones que impiden su funcionamiento, presentan daños estructurales de una o varias de sus partes. <b>GRADO DE AFECTACION DE MÁS DEL 61%</b></td>
+                        <td>BANCAS</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
                             oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                    <td rowspan="2" class="cantidad-mobiliario-evaluados"><span id="total-mobiliario2">0</span></td>
-                    <td rowspan="20" colspan="3" id="c-indicador" class="false-value">-</td>
+                        <td rowspan="2" class="cantidad-mobiliario-evaluados"><span id="total-mobiliario2">0</span></td>
+                        <td rowspan="20" colspan="3" id="c-indicador" class="false-value">-</td>
+                    </tr>
+                    <tr>
+                        <td>SEÑALIZACIÓN</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                    </tr>
+                    <tr>
+                        <td>LUMINARIAS</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                        <td class="subcol-container cantidad-tipos-mobiliario">
+                            <div class="subcol">3</div>
+                            <div class="subcol">2</div>
+                            <div class="subcol">1</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>BASUREROS</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                        <td class="subcol-container cantidad-tipos-mobiliario">
+                            <div class="subcol"><span id="multiplicacion-3">0</span></div>
+                            <div class="subcol"><span id="multiplicacion-2">0</span></div>
+                            <div class="subcol"><span id="multiplicacion-1">0</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MESAS</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                        <td rowspan="2" class="cantidad-tipos-mobiliario"><span id="resultado-resta">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>JUEGOS INFANTILES</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                    </tr>
+                    <tr>
+                        <td>BEBEDEROS</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                        <td rowspan="3" class="cantidad-tipos-mobiliario"><span id="resultado-division">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>BICIPARQUEADERO</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                    </tr>
+                    <tr>
+                        <td>BIOSALUDABLE</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                    </tr>
+                    <tr>
+                        <td>OTROS</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                        <td rowspan="1" class="rango-container">Rangos</td>
+                    </tr>
+                    <tr>
+                        <td>OTROS</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                        <td class="cantidad-tipos-mobiliario">
+                            <div class="subcol-container">
+                                <div class="subcol1"><span id="resultado-rango1">0</span></div>
+                                <div class="subcol1"><span id="resultado-rango2">0</span></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OTROS</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                        <td class="cantidad-tipos-mobiliario">
+                            <div class="subcol-container">
+                                <div class="subcol2"><span id="resultado-rango3">0</span></div>
+                                <div class="subcol2"><span id="resultado-rango4">0</span></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OTROS</td>
+                        <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1"
+                            oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
+                        <td class="cantidad-tipos-mobiliario">
+                            <div class="subcol-container">
+                                <div class="subcol3"><span id="resultado-rango5">0</span></div>
+                                <div class="subcol3"><span id="resultado-rango6">0</span></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr class="blue-row">
+                        <td class="blue-row"></td>
+                        <td colspan="4" class="blue-row"></td>
+                        <td class="total blue-cell">
+                            <div id="resultado">0</div>
+                        </td>
+                        <td colspan="4" class="blue-row"></td>
+                    </tr>
+                </tbody>
+            `;
+        
+            // Agregar la tabla al contenedor deseado en tu DOM
+            document.body.appendChild(table); // Ajusta el elemento padre según sea necesario
+        
+            // Agregar los oyentes de eventos para los campos de entrada
+            const inputs = table.querySelectorAll('.evaluacion');
+            const resultado = table.querySelector('#resultado');
+            const multiplicacion3 = table.querySelector('#multiplicacion-3');
+            const multiplicacion2 = table.querySelector('#multiplicacion-2');
+            const multiplicacion1 = table.querySelector('#multiplicacion-1');
+            const resultadoResta = table.querySelector('#resultado-resta');
+            const resultadoDivision = table.querySelector('#resultado-division');
+            const rango1 = table.querySelector('#resultado-rango1');
+            const rango2 = table.querySelector('#resultado-rango2');
+            const rango3 = table.querySelector('#resultado-rango3');
+            const rango4 = table.querySelector('#resultado-rango4');
+            const rango5 = table.querySelector('#resultado-rango5');
+            const rango6 = table.querySelector('#resultado-rango6');
+            const indicador = table.querySelector('#c-indicador');
+        
+            inputs.forEach(input => {
+                input.addEventListener('input', calcularSuma);
+            });
+        
+            function calcularSuma() {
+                let suma = 0;
+        
+                inputs.forEach(input => {
+                    suma += Number(input.value);
+                });
+        
+                resultado.textContent = suma;
+        
+                let total = 0;
+                inputs.forEach(i => {
+                    if (Number(i.value) > 0) {
+                        total++;
+                    }
+                });
+        
+                table.querySelector('#total-mobiliario2').textContent = total;
+        
+                const mult3 = total * 3;
+                multiplicacion3.textContent = mult3;
+                multiplicacion2.textContent = total * 2;
+                multiplicacion1.textContent = total * 1;
+        
+                const resta = Math.max(0, mult3 - total + 1);
+                resultadoResta.textContent = resta;
+        
+                const division = resta > 0 ? Math.round(resta / 3) : 0;
+                resultadoDivision.textContent = division;
+        
+                const condicion1 = (total === 1) ? 0 : total;
+                rango1.textContent = condicion1;
+        
+                let condicion2;
+                switch (resta) {
+                    case 3: condicion2 = 1; break;
+                    case 5: condicion2 = 3; break;
+                    case 7: condicion2 = 5; break;
+                    case 9: condicion2 = 6; break;
+                    case 11: condicion2 = 8; break;
+                    case 13: condicion2 = 10; break;
+                    case 15: condicion2 = 11; break;
+                    case 17: condicion2 = 13; break;
+                    case 19: condicion2 = 15; break;
+                    case 21: condicion2 = 16; break;
+                    case 23: condicion2 = 18; break;
+                    case 25: condicion2 = 20; break;
+                    default: condicion2 = 0;
+                }
+                rango2.textContent = condicion2;
+        
+                const condicion3 = (resta === 1 || condicion2 === 1) ? 0 : condicion2 + 1;
+                rango3.textContent = condicion3;
+        
+                let condicion4;
+                switch (resta) {
+                    case 3: condicion4 = 2; break;
+                    case 5: condicion4 = 5; break;
+                    case 7: condicion4 = 7; break;
+                    case 9: condicion4 = 9; break;
+                    case 11: condicion4 = 12; break;
+                    case 13: condicion4 = 14; break;
+                    case 15: condicion4 = 16; break;
+                    case 17: condicion4 = 19; break;
+                    case 19: condicion4 = 21; break;
+                    case 21: condicion4 = 23; break;
+                    case 23: condicion4 = 25; break;
+                    case 25: condicion4 = 28; break;
+                    default: condicion4 = 0;
+                }
+                rango4.textContent = condicion4;
+        
+                const condicion5 = (resta === 1 || resta === 3) ? 0 : condicion4 + 1;
+                rango5.textContent = condicion5;
+        
+                const condicion6 = mult3;
+                rango6.textContent = condicion6;
+        
+                let cindicador;
+                if (suma === 0) {
+                    cindicador = '-';
+                    indicador.classList.remove('optimo', 'regular', 'critico');
+                } else if (suma <= condicion2) {
+                    cindicador = 'CRÍTICO';
+                    indicador.classList.remove('optimo', 'regular');
+                    indicador.classList.add('critico');
+                } else if (suma <= condicion4) {
+                    cindicador = 'REGULAR';
+                    indicador.classList.remove('optimo', 'critico');
+                    indicador.classList.add('regular');
+                } else if (suma <= condicion6) {
+                    cindicador = 'ÓPTIMO';
+                    indicador.classList.remove('regular', 'critico');
+                    indicador.classList.add('optimo');
+                } else {
+                    cindicador = '-';
+                    indicador.classList.remove('optimo', 'regular', 'critico');
+                }
+        
+                indicador.textContent = cindicador;
+            }
+            
+            const tablesContainer = document.getElementById('tables-container');
+            tablesContainer.appendChild(table);
+        
+            return table;
+        }
+        document.getElementById('add-more-tables-button').addEventListener('click', () => {
+            const additionalCount = Number(document.getElementById('additional-table-count').value);
+            const tablesContainer = document.getElementById('tables-container');
+    
+            for (let i = 0; i < additionalCount; i++) {
+                const totalTables = tablesContainer.children.length + 1; // Actualiza el índice
+                createTable(totalTables);
+            }
+        });
+    </script>
 
-                </tr>
-                <tr>
-                    <td>SEÑALIZACIÓN</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                </tr>
-                <tr>
-                    <td>LUMINARIAS</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                    <td class="subcol-container cantidad-tipos-mobiliario">
-                        <div class="subcol">3</div>
-                        <div class="subcol">2</div>
-                        <div class="subcol">1</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>BASUREROS</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                    <td class="subcol-container cantidad-tipos-mobiliario">
-                        <div class="subcol"><span id="multiplicacion-3">0</span></div>
-                        <div class="subcol"><span id="multiplicacion-2">0</span></div>
-                        <div class="subcol"><span id="multiplicacion-1">0</span></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>MESAS</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                    <td rowspan="2" class="cantidad-tipos-mobiliario"><span id="resultado-resta">0</span></td>
-                </tr>
-                <tr>
-                    <td>JUEGOS INFANTILES</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                </tr>
-                <tr>
-                    <td>BEBEDEROS</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                    <td rowspan="3" class="cantidad-tipos-mobiliario"><span id="resultado-division">0</span></td>
-                </tr>
-                <tr>
-                    <td>BICIPARQUEADERO</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                </tr>
-                <tr>
-                    <td>BIOSALUDABLE</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                </tr>
-                <tr>
-                    <td>OTROS</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                    <td rowspan="1" class="rango-container">Rangos</td>
-                </tr>
-                <tr>
-                    <td>OTROS</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                    <td class="cantidad-tipos-mobiliario">
-                        <div class="subcol-container">
-                            <div class="subcol1" class="subcol1"><span id="resultado-rango1">0</span></div>
-                            <div class="subcol1"><span id="resultado-rango2">0</span></div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>OTROS</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                    <td class="cantidad-tipos-mobiliario">
-                        <div class="subcol-container">
-                            <div class="subcol2"><span id="resultado-rango3">0</span></div>
-                            <div class="subcol2"><span id="resultado-rango4">0</span></div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>OTROS</td>
-                    <td><input type="number" class="evaluacion" value="0" min="0" max="3" step="1" oninput="this.value = this.value > 3 ? 3 : this.value < 0 ? 0 : this.value;"></td>
-                    <td class="cantidad-tipos-mobiliario">
-                        <div class="subcol-container">
-                            <div class="subcol3"><span id="resultado-rango5">0</span></div>
-                            <div class="subcol3"><span id="resultado-rango6">0</span></div>
-                        </div>
-                    </td>
-                </tr>
+    <script src="render.js"></script>
 
-            </tbody>
-
-            <body>
-                <tr class="blue-row">
-                    <td class="blue-row"></td> <!-- Nueva celda azul a la izquierda -->
-                    <td colspan="4" class="blue-row"></td> <!-- Espacios hasta la columna de Evaluación -->
-                    <td class="total blue-cell">
-                        <div id="resultado">0</div> <!-- Posiciona el resultado en la columna de Evaluación -->
-                    </td>
-                    <td colspan="4" class="blue-row"></td> <!-- Celdas restantes -->
-                </tr>
-            </body>
-        </table>
-</div>
-<script src="render.js"></script>
 
 </body>
 
