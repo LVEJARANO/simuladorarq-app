@@ -47,20 +47,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputOtroMobiliario = document.getElementById('otro-mobiliario');
     const totalMobiliario2 = document.getElementById('total-mobiliario2');
     
+    // Checkbox y entradas de "Otros"
+    const checkboxesOtro = [
+        document.getElementById('checkbox-otro'),
+        document.getElementById('checkbox-otro-1'),
+        document.getElementById('checkbox-otro-2'),
+        document.getElementById('checkbox-otro-3')
+    ];
 
-    let areaSeleccionada = 0;
+    const inputsOtro = [
+        document.getElementById('otro-mobiliario'),
+        document.getElementById('otro-mobiliario-1'),
+        document.getElementById('otro-mobiliario-2'),
+        document.getElementById('otro-mobiliario-3')
+    ];
 
     // Función para evaluar la condición de un mobiliario
+    //Contar el mobiliario Otro
+
     function evaluateCondition() {
         let totalSeleccionados = [...mobiliarios].filter(m => m.checked).length;
-        if (checkboxOtro.checked && inputOtroMobiliario.value.trim() !== "") {
-            totalSeleccionados += 1; // Contar el mobiliario "Otro"
-        }
+        // Contar el mobiliario "Otro"
+        checkboxesOtro.forEach((checkbox, index) => {
+            if (checkbox.checked && inputsOtro[index].value.trim() !== "") {
+                totalSeleccionados += 1; // Contar el mobiliario "Otro"
+            }
+        });
 
         totalMobiliarios.textContent = totalSeleccionados;
         calcularValoracionCuantitativa(totalSeleccionados);
         calcularSuma(); // Actualiza la suma total de evaluaciones
     }
+
+    let areaSeleccionada = 0;
+
 
     // Función para calcular la valoración cuantitativa y la calificación del indicador
     function calcularValoracionCuantitativa(totalSeleccionados) {
@@ -69,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         valoracionCuantitativa.classList.add('false-value');
 
         let calificacion = 0;
-
+        if (totalSeleccionados > 0) {
         if (areaSeleccionada === 1000) {
             if (totalSeleccionados === 1) {
                 valoracion = 'CRÍTICO';
@@ -112,12 +132,14 @@ document.addEventListener('DOMContentLoaded', () => {
             valoracionCuantitativa.classList.add('regular');
         } else if (valoracion === 'CRÍTICO') {
             valoracionCuantitativa.classList.add('critico');
+        }else {
+            valoracionCuantitativa.classList.add('false-value'); // Para FALSO
         }
 
         valoracionCuantitativa.textContent = valoracion;
         calificacionIndicador.textContent = calificacion;
     }
-
+}
     // Actualizar el área seleccionada y el tipo de EPE
     areaRadios.forEach(area => {
         area.addEventListener('change', () => {
@@ -148,13 +170,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Manejar el checkbox y el campo de texto "Otro"
-    checkboxOtro.addEventListener('change', function () {
-        inputOtroMobiliario.disabled = !this.checked;
-        if (!this.checked) {
-            inputOtroMobiliario.value = ''; // Limpiar el campo de texto
-        }
-        evaluateCondition(); // Re-evaluar cuando se cambia "Otro"
-    });
+    checkboxesOtro.forEach((checkbox, index) => {
+        checkbox.addEventListener('change', function () {
+            inputsOtro[index].disabled = !this.checked;
+            if (!this.checked) {
+                inputsOtro[index].value = ''; // Limpiar el campo de texto
+            }
+            evaluateCondition(); // Re-evaluar cuando se cambia "Otro"
+        });
+
+        // Escuchar cambios en el campo de texto "Otro" para evaluar de nuevo
+        inputsOtro[index].addEventListener('input', () => {
+            evaluateCondition(); // Re-evaluar cuando el nombre de "Otro" cambia
+            });
+        });
 
     // Escuchar cambios en el campo de texto "Otro" para evaluar de nuevo
     inputOtroMobiliario.addEventListener('input', () => {
