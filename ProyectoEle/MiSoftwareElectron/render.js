@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
 
-
+    // Función para cerrar la aplicación
+    function cerrarAplicacion() {
+        ipcRenderer.send('cerrar-aplicacion'); // Envía el evento de cierre al proceso principal
+    }
     // Cargar el contenido de sidebar.html en el elemento con id="sidebar"
     function cargarSidebar() {
         fetch('sidebar.html')
@@ -14,7 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 document.getElementById('sidebar').innerHTML = data;
                 marcarMenuActivo();
+
+                // Agregar evento de clic para el botón de "Salir"
+                const salirButton = document.querySelector('.salir-button');
+                if (salirButton) {
+                    salirButton.addEventListener('click', cerrarAplicacion);
+                }
             })
+
             .catch(error => {
                 console.error('Error al cargar la barra lateral:', error);
                 document.getElementById('sidebar').innerHTML = '<p>Error al cargar la barra lateral.</p>';
@@ -46,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkboxOtro = document.getElementById('checkbox-otro');
     const inputOtroMobiliario = document.getElementById('otro-mobiliario');
     const totalMobiliario2 = document.getElementById('total-mobiliario2');
-    
+
     // Checkbox y entradas de "Otros"
     const checkboxesOtro = [
         document.getElementById('checkbox-otro'),
@@ -81,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let areaSeleccionada = 0;
 
-
     // Función para calcular la valoración cuantitativa y la calificación del indicador
     function calcularValoracionCuantitativa(totalSeleccionados) {
         let valoracion = 'FALSO';
@@ -90,38 +98,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let calificacion = 0;
         if (totalSeleccionados > 0) {
-        if (areaSeleccionada === 1000) {
-            if (totalSeleccionados === 1) {
-                valoracion = 'CRÍTICO';
-                calificacion = 1;
-            } else if (totalSeleccionados === 2) {
-                valoracion = 'REGULAR';
-                calificacion = 2;
-            } else if (totalSeleccionados >= 3) {
-                valoracion = 'ÓPTIMO';
-                calificacion = 3;
-            }
-        } else if (areaSeleccionada === 4000) {
-            if (totalSeleccionados <= 2) {
-                valoracion = 'CRÍTICO';
-                calificacion = 1;
-            } else if (totalSeleccionados === 3) {
-                valoracion = 'REGULAR';
-                calificacion = 2;
-            } else if (totalSeleccionados >= 4) {
-                valoracion = 'ÓPTIMO';
-                calificacion = 3;
-            }
-        } else if (areaSeleccionada === 10000) {
-            if (totalSeleccionados <= 3) {
-                valoracion = 'CRÍTICO';
-                calificacion = 1;
-            } else if (totalSeleccionados === 4) {
-                valoracion = 'REGULAR';
-                calificacion = 2;
-            } else if (totalSeleccionados >= 5) {
-                valoracion = 'ÓPTIMO';
-                calificacion = 3;
+            if (areaSeleccionada === 1000) {
+                if (totalSeleccionados === 1) {
+                    valoracion = 'CRÍTICO';
+                    calificacion = 1;
+                } else if (totalSeleccionados === 2) {
+                    valoracion = 'REGULAR';
+                    calificacion = 2;
+                } else if (totalSeleccionados >= 3) {
+                    valoracion = 'ÓPTIMO';
+                    calificacion = 3;
+                }
+            } else if (areaSeleccionada === 4000) {
+                if (totalSeleccionados <= 2) {
+                    valoracion = 'CRÍTICO';
+                    calificacion = 1;
+                } else if (totalSeleccionados === 3) {
+                    valoracion = 'REGULAR';
+                    calificacion = 2;
+                } else if (totalSeleccionados >= 4) {
+                    valoracion = 'ÓPTIMO';
+                    calificacion = 3;
+                }
+            } else if (areaSeleccionada === 10000) {
+                if (totalSeleccionados <= 3) {
+                    valoracion = 'CRÍTICO';
+                    calificacion = 1;
+                } else if (totalSeleccionados === 4) {
+                    valoracion = 'REGULAR';
+                    calificacion = 2;
+                } else if (totalSeleccionados >= 5) {
+                    valoracion = 'ÓPTIMO';
+                    calificacion = 3;
+                }
             }
         }
 
@@ -132,14 +141,104 @@ document.addEventListener('DOMContentLoaded', () => {
             valoracionCuantitativa.classList.add('regular');
         } else if (valoracion === 'CRÍTICO') {
             valoracionCuantitativa.classList.add('critico');
-        }else {
+        } else {
             valoracionCuantitativa.classList.add('false-value'); // Para FALSO
         }
 
+        // Asigna clases de estilo según la valoración obtenida
+        valoracionCuantitativa.classList.add(valoracion.toLowerCase());
         valoracionCuantitativa.textContent = valoracion;
         calificacionIndicador.textContent = calificacion;
+
+        // Llama a la función para resaltar la celda correspondiente en la tabla
+        resaltarTexto(valoracion, totalSeleccionados);
+
     }
-}
+
+    // Función para resaltar solo una celda específica con borde
+    function resaltarTexto(valoracion, totalSeleccionados) {
+        const filasTexto = document.querySelectorAll('.small-table tbody tr');
+
+        // Eliminar cualquier borde previo en las celdas
+        filasTexto.forEach(fila => {
+            fila.querySelectorAll('td').forEach(celda => {
+                celda.style.border = ''; // Reiniciar el borde de cada celda
+                celda.style.boxShadow = '';
+                
+            });
+        });
+
+        // Obtener todas las filas de la tabla
+        let filas = document.querySelectorAll('tr');
+
+        // Determinar el número total de filas en la tabla
+        let totalFilas = filas.length;
+        let filaObjetivo, celdaObjetivo;
+
+        // --------Lógica para aplicar el borde basado en el área seleccionada y la valoración-------------------
+
+        // Lógica para el área 1000 m²
+        if (areaSeleccionada === 1000) {
+            filaObjetivo = filas[totalFilas - 6];
+            if (valoracion === 'CRÍTICO') {
+                celdaObjetivo = filaObjetivo.querySelectorAll('td')[0]; 
+            } else if (valoracion === 'REGULAR') {
+                filaObjetivo = filas[totalFilas - 12]; 
+                celdaObjetivo = filaObjetivo.querySelectorAll('td')[0];
+            } else if (valoracion === 'ÓPTIMO') {
+                filaObjetivo = filas[totalFilas - 18];
+                celdaObjetivo = filaObjetivo.querySelectorAll('td')[0];
+            }
+        }
+        // Lógica para el área 4000 m²
+        else if (areaSeleccionada === 4000) {
+            filaObjetivo = filas[totalFilas - 6]; 
+            if (valoracion === 'CRÍTICO') {
+                celdaObjetivo = filaObjetivo.querySelectorAll('td')[1]; 
+            } else if (valoracion === 'REGULAR') {
+                filaObjetivo = filas[totalFilas - 12];
+                celdaObjetivo = filaObjetivo.querySelectorAll('td')[1]; 
+            } else if (valoracion === 'ÓPTIMO') {
+                filaObjetivo = filas[totalFilas - 18];
+                celdaObjetivo = filaObjetivo.querySelectorAll('td')[1]; 
+            }
+        }
+        // Lógica para el área 10000 m²
+        else if (areaSeleccionada === 10000) {
+            filaObjetivo = filas[totalFilas - 6]; 
+            if (valoracion === 'CRÍTICO') {
+                celdaObjetivo = filaObjetivo.querySelectorAll('td')[2]; 
+            } else if (valoracion === 'REGULAR') {
+                filaObjetivo = filas[totalFilas - 12];
+                celdaObjetivo = filaObjetivo.querySelectorAll('td')[2]; 
+            } else if (valoracion === 'ÓPTIMO') {
+                filaObjetivo = filas[totalFilas - 18];
+                celdaObjetivo = filaObjetivo.querySelectorAll('td')[2]; 
+            }
+        }
+
+        // Borde e iluminación si la celda objetivo es válida
+        if (celdaObjetivo) {
+            const color = getColorForValoracion(valoracion); // Función para obtener el color de borde según la valoración
+            celdaObjetivo.style.border = `2px solid ${color}`;
+            celdaObjetivo.style.boxShadow = `0 0 15px ${color}`;
+        }
+    }    
+
+    // Función auxiliar para obtener el color correspondiente según la valoración
+    function getColorForValoracion(valoracion) {
+        switch (valoracion) {
+            case 'ÓPTIMO':
+                return 'green';
+            case 'REGULAR':
+                return 'yellow';
+            case 'CRÍTICO':
+                return 'red';
+            default:
+                return 'black';
+        }
+    }
+
     // Actualizar el área seleccionada y el tipo de EPE
     areaRadios.forEach(area => {
         area.addEventListener('change', () => {
@@ -182,16 +281,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Escuchar cambios en el campo de texto "Otro" para evaluar de nuevo
         inputsOtro[index].addEventListener('input', () => {
             evaluateCondition(); // Re-evaluar cuando el nombre de "Otro" cambia
-            });
         });
+    });
 
     // Escuchar cambios en el campo de texto "Otro" para evaluar de nuevo
     inputOtroMobiliario.addEventListener('input', () => {
         evaluateCondition(); // Re-evaluar cuando el nombre de "Otro" cambia
     });
 
-    
+
 
 
 });
-

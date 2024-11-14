@@ -5,67 +5,158 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenidos</title>
+    
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            block-size: 100vh;
             margin: 0;
-            background-image: url('../MiSoftwareElectron/img/fondo.jpg'); /* Ruta de la imagen */
-            background-size: cover; /* Ajustar la imagen para cubrir toda la pantalla */
+            background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Para mantener la imagen fija al hacer scroll */
-            background-repeat: no-repeat; /* Evitar que la imagen se repita */
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            flex-direction: column;
+            transition: background-image 1s ease-in-out; /* Suavizado en la transición */
         }
         .container {
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
-            padding: 50px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.50);
+            padding: 70px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
             position: relative;
-            width: 600px;
+            inline-size: 800px;
+        }
+        .logo {
+            max-inline-size: 100px;
+            margin-block-end: 10px;
         }
         h1 {
-            font-size: 60px; /* Incremento del tamaño de la fuente */
-            font-weight: bold; /* Fuente en negrita */
-            margin-bottom: 20px;
+            font-family: 'Lobster', cursive;
+            font-size: 70px;
+            font-weight: bold;
+            color: #006699;
+            margin-block-end: 20px;
+        }
+        .intro {
+            font-size: 20px;
+            color: #34495e;
+            margin-block-end: 30px;
+        }
+        .social-links a {
+            color: #007bff;
+            font-size: 24px;
+            margin-inline: 10px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: #0056b3;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
+            inline-size: 250px;
+            padding: 15px 0;
+            font-size: 18px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            border: 2px solid #006699;
+            border-radius: 50px;
             cursor: pointer;
+            background-image: linear-gradient(45deg, #006699, #0099cc);
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 10px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #005b82;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .about {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 10px;
+            margin-block-start: 40px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .footer {
+            margin-block-start: 40px;
+            font-size: 14px;
+            color: #2c3e50;
+            opacity: 0.8;
         }
         .ingresar {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #007bff; /* Fondo azul */
-            color: white; /* Texto blanco */
+            inset-block-start: 20px;
+            inset-inline-end: 20px;
+            inline-size: 120px;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            background-image: linear-gradient(45deg, #006699, #0099cc);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        .manual {
-            margin-top: 30px;
-            background-color: #e0e0e0;
+        .ingresar:hover {
+            background-color: #005b82;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Bienvenidos</h1>
         <button class="ingresar" onclick="openSecondWindow()">Ingresar</button>
-        <button class="manual">Manual de Usuario</button>
+        
+        <img src="../MiSoftwareElectron/img/LOGOTIPO.png" alt="Logo IFEPE" class="logo">
+        <h1>Bienvenidos</h1>
+        <p class="intro">Bienvenidos a IFEPE, un espacio diseñado para evaluar y gestionar los elementos clave del mobiliario urbano en los espacios públicos.</p>
+        <button class="manual">
+            <i class="fas fa-download"></i>
+            Manual de Usuario
+        </button>
     </div>
 
     <script>
         const { ipcRenderer } = require('electron');
         
         function openSecondWindow() {
-            ipcRenderer.send('open-second-window'); // Enviar el evento al proceso principal
+            ipcRenderer.send('open-second-window');
         }
+
+        // Array de rutas de las imágenes de fondo
+        const backgroundImages = [
+            '../MiSoftwareElectron/img/img1.jpg',
+            '../MiSoftwareElectron/img/img2.jpeg',
+            '../MiSoftwareElectron/img/img3.jpg',
+            '../MiSoftwareElectron/img/img4.jpeg'
+        ];
+        
+        let currentImageIndex = 0;
+
+        // Función para cambiar el fondo de pantalla cada 2 segundos
+        function changeBackgroundImage() {
+            document.body.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`;
+            currentImageIndex = (currentImageIndex + 1) % backgroundImages.length; // Cambia al siguiente índice
+        }
+
+        // Aplica la primera imagen de fondo inmediatamente
+        changeBackgroundImage();
+
+        // Cambia la imagen de fondo cada 2 segundos
+        setInterval(changeBackgroundImage, 2000);
     </script>
 </body>
 </html>

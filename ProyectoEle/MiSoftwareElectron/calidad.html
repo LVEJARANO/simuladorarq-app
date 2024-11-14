@@ -7,64 +7,45 @@
     <title>Sistema - Calidad de Mobiliario</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            inline-size: 100%;
+            block-size: 100%;
+        }
+
+        /* Imagen de fondo en el html */
+        html {
+            background-image: url('../MiSoftwareElectron/img/fondo.jpg');
+            /* Cambia la ruta si es necesario */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* Hace que la imagen de fondo permanezca fija */
+        }
+
         body {
             font-family: Arial, sans-serif;
             display: flex;
             block-size: 100vh;
             margin: 0;
-            background-color: #f2f2f2;
-        }
+            block-size: 100vh;
 
-        .sidebar {
-            inline-size: 220px;
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            box-sizing: border-box;
-        }
 
-        .menu {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .menu-item {
-            margin-block-end: 15px;
-        }
-
-        .menu-button {
-            display: flex;
-            align-items: center;
-            inline-size: 100%;
-            padding: 10px;
-            font-size: 16px;
-            color: white;
-            background-color: transparent;
-            border: none;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .menu-button i {
-            margin-inline-end: 10px;
-        }
-
-        .menu-button:hover {
-            background-color: #444;
         }
 
         .content {
             flex-grow: 1;
             padding: 20px;
-            padding-inline-start: 350px; /* Aumenta este valor según el ancho de la barra lateral */
-            background-color: #ffffff;
+            justify-content: center;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             overflow-y: auto;
             align-items: center;
+            background-color: rgba(255, 255, 255, 0.566);
         }
 
         h1 {
@@ -73,15 +54,12 @@
         }
 
         .info-box {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 14px;
+            margin: 0 auto;
             inline-size: 80%;
-            max-inline-size: 600px;
-            background-color: #e0e0e0;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin-block-start: 20px;
-            /* Espacio entre el título y el cuadro */
         }
 
         /* Estilos para la tabla1 */
@@ -98,6 +76,7 @@
             border: 1px solid #333;
             padding: 10px;
             text-align: center;
+
         }
 
         th {
@@ -110,15 +89,16 @@
         /* Estilos para la tabla2 */
 
         .small-table {
-            inline-size: 50%;
+            inline-size: 40%;
             /* Ajusta la anchura de la tabla */
-            max-inline-size: 600px;
+            max-inline-size: 500px;
             /* Máxima anchura para evitar que crezca mucho */
             border-collapse: collapse;
             border: 1px solid black;
             /* Se asegura que la tabla tenga bordes */
             margin: 20px auto;
             /* Centra la tabla */
+
         }
 
         th,
@@ -326,119 +306,279 @@
             text-align: center;
             /* Centra el texto dentro del input */
         }
+
+        /* Estilo del título principal */
+        h1 {
+            font-size: 50px;
+            font-weight: 900;
+            text-align: center;
+            margin-block-end: 20px;
+            font-family: 'Poppins', sans-serif;
+            color: #4B6B8D;
+            /* Color suave y elegante */
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            position: relative;
+            padding: 10px 0;
+            background: linear-gradient(45deg, #006699, #3d7ba5);
+            /* Gradiente cálido */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: bounce 2s ease infinite;
+        }
+
+        /* Animación de rebote para el título */
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Cuadro de información */
+        .info-box {
+            background: linear-gradient(135deg, #e0eafc, #1755973e);
+            /* Fondo blanco */
+            padding: 30px 40px;
+            /* Ajustar el padding para que no esté tan apretado */
+            border-radius: 12px;
+            /* Bordes redondeados */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            /* Sombra para darle profundidad */
+            font-family: 'Roboto', sans-serif;
+            /* Fuente */
+            line-height: 1.8;
+            /* Espaciado entre líneas */
+            color: #4b5563;
+            /* Color del texto */
+            margin: 0 auto;
+            /* Margen automático para centrar */
+            inline-size: 100%;
+            /* Ancho general */
+            max-inline-size: 900px;
+            /* Ancho máximo */
+            position: relative;
+            /* Posicionamiento relativo */
+            overflow: visible;
+            /* Asegura que todo el contenido sea visible */
+            transition: transform 0.3s ease-in-out;
+            /* Transición suave */
+            border-inline-start: 9px solid #006699;
+            /* Borde izquierdo de color cálido */
+        }
+
+        /* Efecto hover en el cuadro de información */
+        .info-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo del texto dentro de la caja */
+        .info-box p {
+            margin: 0 0 20px;
+            font-size: 1.2em;
+            color: #4b5563;
+            font-weight: 400;
+            line-height: 1.6;
+            text-align: justify;
+            text-indent: 20px;
+        }
+
+        /* Estilo de la primera línea del texto en el cuadro */
+        .info-box p:first-of-type {
+            font-weight: 500;
+            color: #006699;
+        }
+
+        /*-------------------------------------------------*/
+        #additional-table-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+            padding: 20px;
+            margin-block-start: 30px;
+            background: linear-gradient(135deg, #e0eafc, #1755973e);
+            border: 1px solid #1f65abb5;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            max-inline-size: 500px;
+            margin-inline: auto;
+            /* Centrado horizontal */
+        }
+
+        /* Estilo para la etiqueta */
+        #additional-table-container label {
+            font-size: 15px;
+            color: #34495e;
+            font-weight: 600;
+        }
+
+        /* Estilo para el campo de entrada */
+        #additional-table-container input[type="number"] {
+            inline-size: 70px;
+            padding: 6px;
+            border: 1px solid #1265bd96;
+            border-radius: 6px;
+            font-size: 15px;
+            color: #34495e;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease;
+        }
+
+        #additional-table-container input[type="number"]:focus {
+            border-color: #1453a6;
+            outline: none;
+        }
+
+        /* Estilo para el botón */
+        #add-more-tables-button {
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #6bb0da, #006699);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.2s;
+        }
+
+        #add-more-tables-button:hover {
+            background: linear-gradient(135deg, #006699, #6dd5ed);
+            transform: translateY(-2px);
+        }
+
+        #add-more-tables-button:active {
+            transform: translateY(1px);
+        }
     </style>
 </head>
 
 <div class="sidebar" id="sidebar">
     <!-- La barra lateral se cargará aquí mediante render.js -->
 </div>
+<div class="main-content">
+    <div class="content">
+        <h1>Calidad de Mobiliario</h1>
 
-<div class="content">
-    <h1>Calidad de Mobiliario</h1>
+        <!-- Cuadro de información debajo del título -->
+        <div class="info-box">
+            <p><strong>Este indicador evalúa la cantidad y el grado de afectación que presenta el mobiliario urbano en
+                    los espacios
+                    públicos efectivos, donde la valoración cualitativa se clasifica por el grado de afectación del
+                    mobiliario
+                    en %.</strong></p>
+            <p><strong>Por otro lado, la valoración cuantitativa determina si cumple con los requisitos establecidos
+                    para
+                    considerarse óptimo, regular o crítico.</strong></p>
+        </div>
 
-    <!-- Cuadro de información debajo del título -->
-    <div class="info-box">
-        <p>Este indicador evalúa la cantidad y el grado de afectación que presenta el mobiliario urbano en los espacios
-            públicos efectivos, donde la valoración cualitativa se clasifica por el grado de afectación del mobiliario
-            en %. Por otro lado, la valoración cuantitativa determina si cumple con los requisitos establecidos para
-            considerarse óptimo, regular o crítico.</p>
-    </div>
+        <body>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ÁREA DE EPE (M2)</th>
+                        <th>ÁREA DE CUADRANTE (M2)</th>
+                        <th>N°</th>
+                        <th>SELECCIONAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3" id="areaEPE">0</td>
+                        <td>5x5</td>
+                        <td id="division1">1</td>
+                        <td>
+                            <label><input type="radio" name="area-epe" value="1" onclick="updateTables();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10x10</td>
+                        <td id="division2">2</td>
+                        <td>
+                            <label><input type="radio" name="area-epe" value="2" onclick="updateTables();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>20x20</td>
+                        <td id="division3">4</td>
+                        <td>
+                            <label><input type="radio" name="area-epe" value="3" onclick="updateTables();"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <div id="additional-table-container">
+                <label for="additional-table-count">Número de tablas adicionales:</label>
+                <input type="number" id="additional-table-count" min="1" value="1">
+                <button id="add-more-tables-button">Agregar Más Tablas</button>
+            </div>
 
-<body>
-    <table>
-        <thead>
-            <tr>
-                <th>ÁREA DE EPE (M2)</th>
-                <th>ÁREA DE CUADRANTE (M2)</th>
-                <th>N°</th>
-                <th>SELECCIONAR</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td rowspan="3" id="areaEPE">0</td>
-                <td>5x5</td>
-                <td id="division1">1</td>
-                <td>
-                    <label><input type="radio" name="area-epe" value="1" onclick="updateTables();"></label>
-                </td>
-            </tr>
-            <tr>
-                <td>10x10</td>
-                <td id="division2">2</td>
-                <td>
-                    <label><input type="radio" name="area-epe" value="2" onclick="updateTables();"></label>
-                </td>
-            </tr>
-            <tr>
-                <td>20x20</td>
-                <td id="division3">4</td>
-                <td>
-                    <label><input type="radio" name="area-epe" value="3" onclick="updateTables();"></label>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <div id="additional-table-container">
-        <label for="additional-table-count">Número de tablas adicionales:</label>
-        <input type="number" id="additional-table-count" min="1" value="1">
-        <button id="add-more-tables-button">Agregar Más Tablas</button>
-    </div>
+            <div id="tables-container">
+                <!-- Aquí se duplicarán las tablas -->
+            </div>
 
-    <div id="tables-container">
-        <!-- Aquí se duplicarán las tablas -->
-    </div>
 
-    
 
-    <script>
-        
-        // Cargar el valor de área EPE desde localStorage al cargar la página
-        window.onload = function () {
-            const areaEPEValue = localStorage.getItem('areaEPE');
-            if (areaEPEValue !== null) {
-                document.getElementById('areaEPE').innerText = areaEPEValue;
-            }
-            // Llama a updateDivisions para calcular las divisiones inicialmente
-            updateDivisions();
-            updateTables(); // Actualiza las tablas al cargar
-        };
+            <script>
 
-        function updateDivisions() {
-            // Obtener el valor del área EPE desde la celda correspondiente
-            const areaEPE = parseFloat(document.getElementById('areaEPE').innerText);
+                // Cargar el valor de área EPE desde localStorage al cargar la página
+                window.onload = function () {
+                    const areaEPEValue = localStorage.getItem('areaEPE');
+                    if (areaEPEValue !== null) {
+                        document.getElementById('areaEPE').innerText = areaEPEValue;
+                    }
+                    // Llama a updateDivisions para calcular las divisiones inicialmente
+                    updateDivisions();
+                    updateTables(); // Actualiza las tablas al cargar
+                };
 
-            // Definir las áreas de cuadrante en m²
-            const areasCuadrante = [25, 100, 400]; // 5x5, 10x10, 20x20
+                function updateDivisions() {
+                    // Obtener el valor del área EPE desde la celda correspondiente
+                    const areaEPE = parseFloat(document.getElementById('areaEPE').innerText);
 
-            // Calcular y mostrar la división en cada celda correspondiente
-            areasCuadrante.forEach((area, index) => {
-                const resultado = Math.round(areaEPE / area); // Redondea al entero más cercano
-                document.getElementById(`division${index + 1}`).innerText = resultado;
-            });
-        }
+                    // Definir las áreas de cuadrante en m²
+                    const areasCuadrante = [25, 100, 400]; // 5x5, 10x10, 20x20
 
-        function updateTables() {
-            const selectedValue = document.querySelector('input[name="area-epe"]:checked')?.value;
-            const tablesContainer = document.getElementById('tables-container');
-            tablesContainer.innerHTML = ''; // Limpiar las tablas existentes
-
-            if (selectedValue) {
-                const numTables = parseInt(document.getElementById(`division${selectedValue}`).innerText);
-                for (let i = 0; i < numTables; i++) {
-                    const newTable = createTable(i + 1);
-                    tablesContainer.appendChild(newTable);
+                    // Calcular y mostrar la división en cada celda correspondiente
+                    areasCuadrante.forEach((area, index) => {
+                        const resultado = Math.round(areaEPE / area); // Redondea al entero más cercano
+                        document.getElementById(`division${index + 1}`).innerText = resultado;
+                    });
                 }
-            }
-        }
 
-        
+                function updateTables() {
+                    const selectedValue = document.querySelector('input[name="area-epe"]:checked')?.value;
+                    const tablesContainer = document.getElementById('tables-container');
+                    tablesContainer.innerHTML = ''; // Limpiar las tablas existentes
 
-        function createTable(index) {
-            const table = document.createElement('table');
-            table.className = "small-table";
-            table.innerHTML = `
+                    if (selectedValue) {
+                        const numTables = parseInt(document.getElementById(`division${selectedValue}`).innerText);
+                        for (let i = 0; i < numTables; i++) {
+                            const newTable = createTable(i + 1);
+                            tablesContainer.appendChild(newTable);
+                        }
+                    }
+                }
+
+
+
+                function createTable(index) {
+                    const table = document.createElement('table');
+                    table.className = "small-table";
+                    table.innerHTML = `
                 <thead>
                     <tr>
                         <th rowspan="3">N° DE CUADRANTE</th>
@@ -584,150 +724,151 @@
                     </tr>
                 </tbody>
             `;
-        
-            // Agregar la tabla al contenedor deseado en tu DOM
-            document.body.appendChild(table); // Ajusta el elemento padre según sea necesario
-        
-            // Agregar los oyentes de eventos para los campos de entrada
-            const inputs = table.querySelectorAll('.evaluacion');
-            const resultado = table.querySelector('#resultado');
-            const multiplicacion3 = table.querySelector('#multiplicacion-3');
-            const multiplicacion2 = table.querySelector('#multiplicacion-2');
-            const multiplicacion1 = table.querySelector('#multiplicacion-1');
-            const resultadoResta = table.querySelector('#resultado-resta');
-            const resultadoDivision = table.querySelector('#resultado-division');
-            const rango1 = table.querySelector('#resultado-rango1');
-            const rango2 = table.querySelector('#resultado-rango2');
-            const rango3 = table.querySelector('#resultado-rango3');
-            const rango4 = table.querySelector('#resultado-rango4');
-            const rango5 = table.querySelector('#resultado-rango5');
-            const rango6 = table.querySelector('#resultado-rango6');
-            const indicador = table.querySelector('#c-indicador');
-        
-            inputs.forEach(input => {
-                input.addEventListener('input', calcularSuma);
-            });
-        
-            function calcularSuma() {
-                let suma = 0;
-        
-                inputs.forEach(input => {
-                    suma += Number(input.value);
-                });
-        
-                resultado.textContent = suma;
-        
-                let total = 0;
-                inputs.forEach(i => {
-                    if (Number(i.value) > 0) {
-                        total++;
+
+                    // Agregar la tabla al contenedor deseado en tu DOM
+                    document.body.appendChild(table); // Ajusta el elemento padre según sea necesario
+
+                    // Agregar los oyentes de eventos para los campos de entrada
+                    const inputs = table.querySelectorAll('.evaluacion');
+                    const resultado = table.querySelector('#resultado');
+                    const multiplicacion3 = table.querySelector('#multiplicacion-3');
+                    const multiplicacion2 = table.querySelector('#multiplicacion-2');
+                    const multiplicacion1 = table.querySelector('#multiplicacion-1');
+                    const resultadoResta = table.querySelector('#resultado-resta');
+                    const resultadoDivision = table.querySelector('#resultado-division');
+                    const rango1 = table.querySelector('#resultado-rango1');
+                    const rango2 = table.querySelector('#resultado-rango2');
+                    const rango3 = table.querySelector('#resultado-rango3');
+                    const rango4 = table.querySelector('#resultado-rango4');
+                    const rango5 = table.querySelector('#resultado-rango5');
+                    const rango6 = table.querySelector('#resultado-rango6');
+                    const indicador = table.querySelector('#c-indicador');
+
+                    inputs.forEach(input => {
+                        input.addEventListener('input', calcularSuma);
+                    });
+
+                    function calcularSuma() {
+                        let suma = 0;
+
+                        inputs.forEach(input => {
+                            suma += Number(input.value);
+                        });
+
+                        resultado.textContent = suma;
+
+                        let total = 0;
+                        inputs.forEach(i => {
+                            if (Number(i.value) > 0) {
+                                total++;
+                            }
+                        });
+
+                        table.querySelector('#total-mobiliario2').textContent = total;
+
+                        const mult3 = total * 3;
+                        multiplicacion3.textContent = mult3;
+                        multiplicacion2.textContent = total * 2;
+                        multiplicacion1.textContent = total * 1;
+
+                        const resta = Math.max(0, mult3 - total + 1);
+                        resultadoResta.textContent = resta;
+
+                        const division = resta > 0 ? Math.round(resta / 3) : 0;
+                        resultadoDivision.textContent = division;
+
+                        const condicion1 = (total === 1) ? 0 : total;
+                        rango1.textContent = condicion1;
+
+                        let condicion2;
+                        switch (resta) {
+                            case 3: condicion2 = 1; break;
+                            case 5: condicion2 = 3; break;
+                            case 7: condicion2 = 5; break;
+                            case 9: condicion2 = 6; break;
+                            case 11: condicion2 = 8; break;
+                            case 13: condicion2 = 10; break;
+                            case 15: condicion2 = 11; break;
+                            case 17: condicion2 = 13; break;
+                            case 19: condicion2 = 15; break;
+                            case 21: condicion2 = 16; break;
+                            case 23: condicion2 = 18; break;
+                            case 25: condicion2 = 20; break;
+                            default: condicion2 = 0;
+                        }
+                        rango2.textContent = condicion2;
+
+                        const condicion3 = (resta === 1 || condicion2 === 1) ? 0 : condicion2 + 1;
+                        rango3.textContent = condicion3;
+
+                        let condicion4;
+                        switch (resta) {
+                            case 3: condicion4 = 2; break;
+                            case 5: condicion4 = 5; break;
+                            case 7: condicion4 = 7; break;
+                            case 9: condicion4 = 9; break;
+                            case 11: condicion4 = 12; break;
+                            case 13: condicion4 = 14; break;
+                            case 15: condicion4 = 16; break;
+                            case 17: condicion4 = 19; break;
+                            case 19: condicion4 = 21; break;
+                            case 21: condicion4 = 23; break;
+                            case 23: condicion4 = 25; break;
+                            case 25: condicion4 = 28; break;
+                            default: condicion4 = 0;
+                        }
+                        rango4.textContent = condicion4;
+
+                        const condicion5 = (resta === 1 || resta === 3) ? 0 : condicion4 + 1;
+                        rango5.textContent = condicion5;
+
+                        const condicion6 = mult3;
+                        rango6.textContent = condicion6;
+
+                        let cindicador;
+                        if (suma === 0) {
+                            cindicador = '-';
+                            indicador.classList.remove('optimo', 'regular', 'critico');
+                        } else if (suma <= condicion2) {
+                            cindicador = 'CRÍTICO';
+                            indicador.classList.remove('optimo', 'regular');
+                            indicador.classList.add('critico');
+                        } else if (suma <= condicion4) {
+                            cindicador = 'REGULAR';
+                            indicador.classList.remove('optimo', 'critico');
+                            indicador.classList.add('regular');
+                        } else if (suma <= condicion6) {
+                            cindicador = 'ÓPTIMO';
+                            indicador.classList.remove('regular', 'critico');
+                            indicador.classList.add('optimo');
+                        } else {
+                            cindicador = '-';
+                            indicador.classList.remove('optimo', 'regular', 'critico');
+                        }
+
+                        indicador.textContent = cindicador;
+                    }
+
+                    const tablesContainer = document.getElementById('tables-container');
+                    tablesContainer.appendChild(table);
+
+                    return table;
+                }
+                document.getElementById('add-more-tables-button').addEventListener('click', () => {
+                    const additionalCount = Number(document.getElementById('additional-table-count').value);
+                    const tablesContainer = document.getElementById('tables-container');
+
+                    for (let i = 0; i < additionalCount; i++) {
+                        const totalTables = tablesContainer.children.length + 1; // Actualiza el índice
+                        createTable(totalTables);
                     }
                 });
-        
-                table.querySelector('#total-mobiliario2').textContent = total;
-        
-                const mult3 = total * 3;
-                multiplicacion3.textContent = mult3;
-                multiplicacion2.textContent = total * 2;
-                multiplicacion1.textContent = total * 1;
-        
-                const resta = Math.max(0, mult3 - total + 1);
-                resultadoResta.textContent = resta;
-        
-                const division = resta > 0 ? Math.round(resta / 3) : 0;
-                resultadoDivision.textContent = division;
-        
-                const condicion1 = (total === 1) ? 0 : total;
-                rango1.textContent = condicion1;
-        
-                let condicion2;
-                switch (resta) {
-                    case 3: condicion2 = 1; break;
-                    case 5: condicion2 = 3; break;
-                    case 7: condicion2 = 5; break;
-                    case 9: condicion2 = 6; break;
-                    case 11: condicion2 = 8; break;
-                    case 13: condicion2 = 10; break;
-                    case 15: condicion2 = 11; break;
-                    case 17: condicion2 = 13; break;
-                    case 19: condicion2 = 15; break;
-                    case 21: condicion2 = 16; break;
-                    case 23: condicion2 = 18; break;
-                    case 25: condicion2 = 20; break;
-                    default: condicion2 = 0;
-                }
-                rango2.textContent = condicion2;
-        
-                const condicion3 = (resta === 1 || condicion2 === 1) ? 0 : condicion2 + 1;
-                rango3.textContent = condicion3;
-        
-                let condicion4;
-                switch (resta) {
-                    case 3: condicion4 = 2; break;
-                    case 5: condicion4 = 5; break;
-                    case 7: condicion4 = 7; break;
-                    case 9: condicion4 = 9; break;
-                    case 11: condicion4 = 12; break;
-                    case 13: condicion4 = 14; break;
-                    case 15: condicion4 = 16; break;
-                    case 17: condicion4 = 19; break;
-                    case 19: condicion4 = 21; break;
-                    case 21: condicion4 = 23; break;
-                    case 23: condicion4 = 25; break;
-                    case 25: condicion4 = 28; break;
-                    default: condicion4 = 0;
-                }
-                rango4.textContent = condicion4;
-        
-                const condicion5 = (resta === 1 || resta === 3) ? 0 : condicion4 + 1;
-                rango5.textContent = condicion5;
-        
-                const condicion6 = mult3;
-                rango6.textContent = condicion6;
-        
-                let cindicador;
-                if (suma === 0) {
-                    cindicador = '-';
-                    indicador.classList.remove('optimo', 'regular', 'critico');
-                } else if (suma <= condicion2) {
-                    cindicador = 'CRÍTICO';
-                    indicador.classList.remove('optimo', 'regular');
-                    indicador.classList.add('critico');
-                } else if (suma <= condicion4) {
-                    cindicador = 'REGULAR';
-                    indicador.classList.remove('optimo', 'critico');
-                    indicador.classList.add('regular');
-                } else if (suma <= condicion6) {
-                    cindicador = 'ÓPTIMO';
-                    indicador.classList.remove('regular', 'critico');
-                    indicador.classList.add('optimo');
-                } else {
-                    cindicador = '-';
-                    indicador.classList.remove('optimo', 'regular', 'critico');
-                }
-        
-                indicador.textContent = cindicador;
-            }
-            
-            const tablesContainer = document.getElementById('tables-container');
-            tablesContainer.appendChild(table);
-        
-            return table;
-        }
-        document.getElementById('add-more-tables-button').addEventListener('click', () => {
-            const additionalCount = Number(document.getElementById('additional-table-count').value);
-            const tablesContainer = document.getElementById('tables-container');
-    
-            for (let i = 0; i < additionalCount; i++) {
-                const totalTables = tablesContainer.children.length + 1; // Actualiza el índice
-                createTable(totalTables);
-            }
-        });
-    </script>
+            </script>
 
-    <script src="render.js"></script>
+            <script src="render.js"></script>
 
 
-</body>
+        </body>
+    </div>
 
 </html>
