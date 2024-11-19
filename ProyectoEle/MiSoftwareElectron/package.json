@@ -2,11 +2,16 @@
   "name": "mi-software-electron",
   "version": "1.0.0",
   "main": "main.js",
+  "description": "Un software de escritorio desarrollado con Electron",
+  "author": "Tu Nombre",
+  "license": "ISC",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-builder --win --x64"
   },
   "devDependencies": {
-    "electron": "^32.2.2"
+    "electron": "^32.2.2",
+    "electron-builder": "^25.1.8"
   },
   "dependencies": {
     "boolean": "^3.2.0",
@@ -73,7 +78,24 @@
     "wrappy": "^1.0.2",
     "yauzl": "^2.10.0"
   },
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "build": {
+    "files": [
+      "**/*",
+      "img/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "img/",
+        "to": "img/",
+        "filter": ["**/*"]
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "signingHashAlgorithms": null
+    }
+  }
 }
+

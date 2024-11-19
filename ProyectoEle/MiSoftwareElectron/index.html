@@ -120,31 +120,38 @@
     <div class="container">
         <button class="ingresar" onclick="openSecondWindow()">Ingresar</button>
         
-        <img src="../MiSoftwareElectron/img/LOGOTIPO.png" alt="Logo IFEPE" class="logo">
+        <img id="logo" alt="Logo IFEPE" class="logo">
         <h1>Bienvenidos</h1>
         <p class="intro">Bienvenidos a IFEPE, un espacio diseñado para evaluar y gestionar los elementos clave del mobiliario urbano en los espacios públicos.</p>
         <button class="manual">
-            <a href="../MiSoftwareElectron/pdf/Manual_Usuario_v1.1.pdf" download="Manual_Usuario.pdf" style="text-decoration: none; color: white;">
-                <i class="fas fa-download"></i> Manual de Usuario
+            <a id="manual-link" href="#" target="_blank" style="text-decoration: none; color: white;">
+                <i class="fas fa-download"></i> Descargar Manual
             </a>
+            
         </button>
         
     </div>
 
     <script>
         const { ipcRenderer } = require('electron');
+        const path = require('path');
+        const appPath = path.join(__dirname, 'img');
         
         function openSecondWindow() {
             ipcRenderer.send('open-second-window');
         }
+        
+        ipcRenderer.invoke('get-pdf-path').then(pdfPath => {
+            document.getElementById('manual-link').href = pdfPath;
+        });
 
-        // Array de rutas de las imágenes de fondo
         const backgroundImages = [
-            '../MiSoftwareElectron/img/img10.jpeg',
-            '../MiSoftwareElectron/img/img11.jpeg',
-            '../MiSoftwareElectron/img/img12.jpeg',
-            '../MiSoftwareElectron/img/img8.jpg'
+        './img/img10.jpeg',
+        './img/img11.jpeg',
+        './img/img12.jpeg',
+        './img/img8.jpg'
         ];
+
         
         let currentImageIndex = 0;
 
@@ -154,11 +161,13 @@
             currentImageIndex = (currentImageIndex + 1) % backgroundImages.length; // Cambia al siguiente índice
         }
 
+        document.getElementById('logo').src = `file://${path.join(__dirname, 'img', 'LOGOTIPO.png')}`;
         // Aplica la primera imagen de fondo inmediatamente
         changeBackgroundImage();
 
         // Cambia la imagen de fondo cada 2 segundos
-        setInterval(changeBackgroundImage, 2000);
+        setInterval(changeBackgroundImage, 2000)
+
     </script>
 </body>
-</html>
+</html>  
